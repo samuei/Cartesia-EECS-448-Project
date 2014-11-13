@@ -1,14 +1,15 @@
 EECS448-Project
 ===============
 
-EECS 448
-Final Project
-Proposal
-
 Bridget Davis
+
 Samuel Lamb
+
 Elise McEllhiney
+
 Danilo Santos de Oliveira
+
+=
 
 Proposal:
 
