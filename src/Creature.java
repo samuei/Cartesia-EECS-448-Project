@@ -20,22 +20,22 @@ public class Creature
 	{
 		return maxhp;
 	}
-	// Returns congruence
+	// Returns congruence (cha)
 	public int get_congruence()
 	{
 		return congruence;
 	}
-	// Returns quads
+	// Returns quads (str)
 	public int get_quads()
 	{
 		return quads;
 	}
-	// Returns acuteness
+	// Returns acuteness (dex)
 	public int get_acuteness()
 	{
 		return acuteness;
 	}
-	// Returns eccentricity
+	// Returns eccentricity (wis)
 	public int get_eccentricity()
 	{
 		return eccentricity;
@@ -45,12 +45,12 @@ public class Creature
 	{
 		return experience;
 	}
-	// Returns plasticity
+	// Returns plasticity (def)
 	public int get_plasticity()
 	{
 		return plasticity;
 	}
-	// Returns sprightliness
+	// Returns sprightliness (spd)
 	public int get_sprightliness()
 	{
 		return sprightliness;
@@ -60,38 +60,38 @@ public class Creature
 	
 	public void set_curhp(int newval)
 	{
-		self.curhp = newval;
+		curhp = newval;
 	}
 	public void set_maxhp(int newval)
 	{
-		self.maxhp = newval;
+		maxhp = newval;
 	}
 	public void set_congruence(int newval)
 	{
-		self.congruence = newval;
+		congruence = newval;
 	}
 	public void set_quads(int newval)
 	{
-		self.quads = newval;
+		quads = newval;
 	}
 	public void set_acuteness(int newval)
 	{
-		self.acuteness = newval;
+		acuteness = newval;
 	}
 	public void set_eccentricity(int newval)
 	{
-		self.eccentricity = newval;
+		eccentricity = newval;
 	}
 	public void set_experience(int newval)
 	{
-		self.experience = newval;
+		experience = newval;
 	}
 	public void set_plasticity(int newval)
 	{
-		self.plasticity = newval;
+		plasticity = newval;
 	}
 	public void set_sprightliness(int newval)
 	{
-		self.sprightliness = newval;
+		sprightliness = newval;
 	}
 }
