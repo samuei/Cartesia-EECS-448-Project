@@ -25,6 +25,8 @@ public class playerCharacter extends Creature
 	private int bifurcator = 0;
 	private int pythagoreanserum = 0;
 	
+	private String wearing = "";
+	
 	// Getter methods for prices:
 	public int get_hpprice()
 	{
@@ -53,6 +55,10 @@ public class playerCharacter extends Creature
 	public int get_sprightlinessprice()
 	{
 	return sprightlinessprice;
+	}
+	public String get_wearing()
+	{
+		return wearing;
 	}
 	
 	// Setter methods for prices:
@@ -83,6 +89,10 @@ public class playerCharacter extends Creature
 	public void set_sprightlinessprice(int newval)
 	{
 	sprightlinessprice = newval;
+	}
+	public void set_wearing(String newwear)
+	{
+		wearing = newwear;
 	}
 	
 	// Stat increase method
@@ -333,8 +343,171 @@ public class playerCharacter extends Creature
 		return false;
 	}
 	
+	// Wear wearable items:
+	public boolean wearitem(String towear)
+	{
+		// If you're already wearing something, you need to remove it, first.
+		// Why? Because I said so. That's why.
+		if (!wearing.equals(""))
+		{
+			return false;
+		}
+		else
+		{
+			// The values below are entirely negotiable
+			
+			
+			// This is a messy way to do this, but it works.
+			if (towear.equals("Spline"))
+			{
+				set_eccentricity(get_eccentricity()+4);
+			}
+			else if (towear.equals("Krig"))
+			{
+				if(get_eccentricity()<3)
+				{
+					return false;
+				}
+				else 
+				{
+					set_eccentricity(get_eccentricity()-3);
+					set_congruence(get_congruence()+4);
+				}
+			}
+			else if (towear.equals("Sierpin Snow-Skis"))
+			{
+				set_acuteness(get_acuteness()+4);
+			}
+			else if (towear.equals("Strange Attractor"))
+			{
+				set_congruence(get_congruence()+2);
+			}
+			else if (towear.equals("Axe of Choice"))
+			{
+				set_quads(get_quads()+4);
+			}
+			else if (towear.equals("Fuzzy Boundary"))
+			{
+				if (get_congruence() < 4)
+				{
+					return false;
+				}
+				else
+				{
+					set_congruence(get_congruence()-4);
+					set_plasticity(get_plasticity()+5);
+				}
+			}
+			else if (towear.equals("Lacy Gödel"))
+			{
+				set_congruence(get_congruence()+5);
+			}
+			else if (towear.equals("Gauss Hand-Cannon"))
+			{
+				set_acuteness(get_acuteness()+4);
+			}
+			else if (towear.equals("Brass Knuthles"))
+			{
+				set_quads(get_quads()+3);
+			}
+			else if (towear.equals("Greeble"))
+			{
+				if(get_congruence()<5)
+				{
+					return false;
+				}
+				else
+				{
+					set_congruence(get_congruence()-5);
+					set_quads(get_quads()+4);
+					set_eccentricity(get_eccentricity()+5);
+				}
+			}
+			else
+			{
+				// You have to wear an item that's in the game
+				return false;
+			}
+			set_wearing(towear);
+			return true;
+		}
+	}
+	
+	// remove wearable items:
+	public boolean removeitem()
+	{
+		// If you're not wearing something, you can't remove it.
+		// Why? Because you'll break the universe. That's why.
+		if (wearing.equals(""))
+		{
+			return false;
+		}
+		else
+		{
+			// The values below NEED to match those in wearitem
+			
+			
+			if (wearing.equals("Spline"))
+			{
+				set_eccentricity(get_eccentricity()-4);
+			}
+			else if (wearing.equals("Krig"))
+			{
+					set_eccentricity(get_eccentricity()+3);
+					set_congruence(get_congruence()-4);
+			}
+			else if (wearing.equals("Sierpin Snow-Skis"))
+			{
+				set_acuteness(get_acuteness()-4);
+			}
+			else if (wearing.equals("Strange Attractor"))
+			{
+				set_congruence(get_congruence()-2);
+			}
+			else if (wearing.equals("Axe of Choice"))
+			{
+				set_quads(get_quads()-4);
+			}
+			else if (wearing.equals("Fuzzy Boundary"))
+			{
+					set_congruence(get_congruence()+4);
+					set_plasticity(get_plasticity()-5);
+
+			}
+			else if (wearing.equals("Lacy Gödel"))
+			{
+				set_congruence(get_congruence()-5);
+			}
+			else if (wearing.equals("Gauss Hand-Cannon"))
+			{
+				set_acuteness(get_acuteness()-4);
+			}
+			else if (wearing.equals("Brass Knuthles"))
+			{
+				set_quads(get_quads()-3);
+			}
+			else if (wearing.equals("Greeble"))
+			{
+					set_congruence(get_congruence()+5);
+					set_quads(get_quads()-4);
+					set_eccentricity(get_eccentricity()-5);
+			}
+			else
+			{
+				// You have already broken the item system.
+				// You will not break it further.
+				
+				// Live with your shame.
+				return false;
+			}
+			set_wearing("");
+			return true;
+		}
+	}
 	
 	// Character creation method (?):
 	/* Don't know if we want to do this here,
 	*  or if that's a GUI sort of thing. */
+	
+	
 }
