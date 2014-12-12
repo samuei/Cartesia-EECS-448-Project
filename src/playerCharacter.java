@@ -27,6 +27,54 @@ public class playerCharacter extends Creature
 	
 	private String wearing = "";
 	
+	// Getter method for charShape:
+	public String get_charShape()
+	{
+		return charShape;
+	}
+	
+	// Setter method for charShape:
+	public void set_charShape(String newshape)
+	{
+		charShape = newshape;
+	}
+	
+	// Getter methods for items:
+	public int get_archimead()
+	{
+		return archimead;
+	}
+	public int get_crystalmath()
+	{
+		return crystalmath;
+	}
+	public int get_bifurcator()
+	{
+		return bifurcator;
+	}
+	public int get pythagoreanserum()
+	{
+		return pythagoreanserum;
+	}
+	
+	// Setters for items:
+	public void set_archimead(int newval)
+	{
+		archimead = newval;
+	}
+	public void set_crystalmath(int newval)
+	{
+		crystalmath = newval;
+	}
+	public void set_bifurcator(int newval)
+	{
+		bifurcator = newval;
+	}
+	public void set_pythagoreanserum(int newval)
+	{
+		pythagoreanserum = newval;
+	}
+	
 	// Getter methods for prices:
 	public int get_hpprice()
 	{
@@ -398,7 +446,7 @@ public class playerCharacter extends Creature
 					set_plasticity(get_plasticity()+5);
 				}
 			}
-			else if (towear.equals("Lacy Gödel"))
+			else if (towear.equals("Lacy GÃ¶del"))
 			{
 				set_congruence(get_congruence()+5);
 			}
@@ -474,7 +522,7 @@ public class playerCharacter extends Creature
 					set_plasticity(get_plasticity()-5);
 
 			}
-			else if (wearing.equals("Lacy Gödel"))
+			else if (wearing.equals("Lacy GÃ¶del"))
 			{
 				set_congruence(get_congruence()-5);
 			}
