@@ -52,7 +52,7 @@ public class playerCharacter extends Creature
 	{
 		return bifurcator;
 	}
-	public int get pythagoreanserum()
+	public int get_pythagoreanserum()
 	{
 		return pythagoreanserum;
 	}
