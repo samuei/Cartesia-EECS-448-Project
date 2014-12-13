@@ -25,9 +25,9 @@ public class combat{
 	private playerCharacter pro;
 	private Creature bad;
 
-	private boolean combat_over = False;
-	private boolean enemy_dead; = False;
-	private boolean player_dead = False;
+	private boolean combat_over = false;
+	private boolean enemy_dead = false;
+	private boolean player_dead = false;
 
 	public combat(playerCharacter pro, Creature bad){
 
@@ -75,22 +75,22 @@ public class combat{
 	}
 
 	public void p_defend(){
-		def = True;
+		def = true;
 
 		e_turn();
 
-		def = False;
+		def = false;
 		return;
 	}
 
-	public void p_useItem(string Item){
+	public void p_useItem(String Item){
 		return;
 	}
 
 	public void p_flee(){
 		if(p_speed >= e_speed){
 			//player successfully flees
-			combat_over = True;
+			combat_over = true;
 		}
 		else{
 			//player fails to flee
@@ -117,21 +117,21 @@ public class combat{
 
 			//checks to see if player is dead
 			if(p_curhp<=0){
-				combat_over = True
-				player_dead = True;
+				combat_over = true;
+				player_dead = true;
 			}
 		}
 		else if(e_curhp > 0){
 			if(e_speed >= p_speed)
 				//some kind of boolean
 				//some kind of "Enemy fled" in the text box
-				combat_over = True;
+				combat_over = true;
 			else{
 				//enemy is stuck..
 			}
 		}
 		else{
-			enemy_dead = True;
+			enemy_dead = true;
 			pro.set_experience(p_experience + 5);
 		}
 		return;
