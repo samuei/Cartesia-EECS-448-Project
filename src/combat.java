@@ -55,76 +55,69 @@ public class combat{
 	}
 
 	public void p_attack(){
-		switch(p_shape){
-			case "Circle":
-				p_atk_pwr = p_magic;
-				break;
-			case "Triangle":
-				p_atk_pwr = p_dexterity;
-				break;
-			case "Square":
-				p_atk_pwr = p_strength;
-				break;
+		if(p_shape=="Circle"){
+			p_atk_pwr = p_magic;
+		}
+		else if(p_shape=="Triangle"){
+			p_atk_pwr = p_dexterity;
+		}
+		else if(p_shape=="Square"){
+			p_atk_pwr = p_strength;
 		}
 		e_curhp -= p_atk_pwr;
 
 		bad.set_curhp(e_curhp);
 
-		//e_turn();
 		return;
 	}
 
 	public void p_defend(){
 		def = true;
 
-		//e_turn();
-
-		//def = false;
 		return;
 	}
 
-	public boolean p_useItem(String Item){
-		switch(Item){
-			case "pythagoreanserum":
-				if(pro.get_pythagoreanserum() >= 1){
-					p_dexterity += 5;
-					pro.set_pythagoreanserum(pro.get_pythagoreanserum()-1);
-					return true;
-				}
-				else{
-					return false;
-				}
-				break;
-			case "bifurcator":
-				pro.usebifurcator(bad);
-				break;
-			case "crystalmath":
-				if(pro.get_chrystalmath() >= 1){
-					//side effects?
-					p_speed += 5;
-					pro.set_chrystalmath(pro.get_chrystalmath()-1);
-					true;
-				}
-				else{
-					false;
-				}
-				break;
-			case "archimead":
-				pro.usearchimead();
-				break;
-			default:
+	public boolean p_useItem(String item){
+		if(item== "pythagoreanserum"){
+			if(pro.get_pythagoreanserum() >= 1){
+				p_dexterity += 2;
+				pro.set_pythagoreanserum(pro.get_pythagoreanserum()-1);
+				return true;
+			}
+			else{
 				return false;
+			}
 		}
-	}
+		else if(item== "bifurcator"){
+			pro.usebifurcator(bad);
+		}
+		else if(item== "crystalmath"{
+			if(pro.get_chrystalmath() >= 1){
+				//side effects?
+				p_speed += 5;
+				pro.set_chrystalmath(pro.get_chrystalmath()-1);
+				true;
+			}
+			else{
+				false;
+			}
+		}
+		else if(item== "archimead"){
+			pro.usearchimead();
+			p_curhp = pro.get_curhp();
+		}
+		else{
+			return false;
+		}
 
 	public void p_flee(){
 		if(p_speed >= e_speed){
 			//player successfully flees
+			//no exp gain
 			combat = false;
 		}
 		else{
 			//player fails to flee
-			//e_turn();
 		}
 		return;
 	}
