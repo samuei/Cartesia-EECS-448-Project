@@ -135,6 +135,7 @@ public class combat{
 		if(e_curhp > (0.1*e_maxhp)){
 			if(def){
 				damage = (int)(0.5*e_strength) - p_atk_pwr;
+				def = false;
 			}
 
 			else
