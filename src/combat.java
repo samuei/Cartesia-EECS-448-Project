@@ -70,21 +70,51 @@ public class combat{
 
 		bad.set_curhp(e_curhp);
 
-		e_turn();
+		//e_turn();
 		return;
 	}
 
 	public void p_defend(){
 		def = true;
 
-		e_turn();
+		//e_turn();
 
-		def = false;
+		//def = false;
 		return;
 	}
 
-	public void p_useItem(String Item){
-		return;
+	public boolean p_useItem(String Item){
+		switch(Item){
+			case "pythagoreanserum":
+				if(pro.get_pythagoreanserum() >= 1){
+					p_dexterity += 5;
+					pro.set_pythagoreanserum(pro.get_pythagoreanserum()-1);
+					return true;
+				}
+				else{
+					return false;
+				}
+				break;
+			case "bifurcator":
+				pro.usebifurcator(bad);
+				break;
+			case "crystalmath":
+				if(pro.get_chrystalmath() >= 1){
+					//side effects?
+					p_speed += 5;
+					pro.set_chrystalmath(pro.get_chrystalmath()-1);
+					true;
+				}
+				else{
+					false;
+				}
+				break;
+			case "archimead":
+				pro.usearchimead();
+				break;
+			default:
+				return false;
+		}
 	}
 
 	public void p_flee(){
@@ -94,7 +124,7 @@ public class combat{
 		}
 		else{
 			//player fails to flee
-			e_turn();
+			//e_turn();
 		}
 		return;
 	}
@@ -103,8 +133,10 @@ public class combat{
 		int damage;
 
 		if(e_curhp > (0.1*e_maxhp)){
-			if(def)
+			if(def){
 				damage = (int)(0.5*e_strength) - p_atk_pwr;
+			}
+
 			else
 				damage = e_strength - p_atk_pwr;
 
