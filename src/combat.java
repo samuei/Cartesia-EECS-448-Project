@@ -55,13 +55,13 @@ public class combat{
 	}
 
 	public void p_attack(){
-		if(p_shape=="Circle"){
+		if(p_shape.equals("Circle")){
 			p_atk_pwr = p_magic;
 		}
-		else if(p_shape=="Triangle"){
+		else if(p_shape.equals("Triangle")){
 			p_atk_pwr = p_dexterity;
 		}
-		else if(p_shape=="Square"){
+		else if(p_shape.equals("Square")){
 			p_atk_pwr = p_strength;
 		}
 		e_curhp -= p_atk_pwr;
@@ -78,7 +78,7 @@ public class combat{
 	}
 
 	public boolean p_useItem(String item){
-		if(item== "pythagoreanserum"){
+		if(item.equals( "pythagoreanserum")){
 			if(pro.get_pythagoreanserum() >= 1){
 				p_dexterity += 2;
 				pro.set_pythagoreanserum(pro.get_pythagoreanserum()-1);
@@ -88,10 +88,10 @@ public class combat{
 				return false;
 			}
 		}
-		else if(item== "bifurcator"){
+		else if(item.equals("bifurcator")){
 			pro.usebifurcator(bad);
 		}
-		else if(item== "crystalmath"{
+		else if(item.equals("crystalmath")){
 			if(pro.get_chrystalmath() >= 1){
 				//side effects?
 				p_speed += 5;
@@ -102,7 +102,7 @@ public class combat{
 				false;
 			}
 		}
-		else if(item== "archimead"){
+		else if(item.equals("archimead")){
 			pro.usearchimead();
 			p_curhp = pro.get_curhp();
 		}
