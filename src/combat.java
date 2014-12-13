@@ -25,7 +25,7 @@ public class combat{
 	private playerCharacter pro;
 	private Creature bad;
 
-	private boolean combat_over = false;
+	private boolean combat = true;
 	private boolean enemy_dead = false;
 	private boolean player_dead = false;
 
@@ -120,7 +120,7 @@ public class combat{
 	public void p_flee(){
 		if(p_speed >= e_speed){
 			//player successfully flees
-			combat_over = true;
+			combat = false;
 		}
 		else{
 			//player fails to flee
@@ -150,7 +150,7 @@ public class combat{
 
 			//checks to see if player is dead
 			if(p_curhp<=0){
-				combat_over = true;
+				combat = false;
 				player_dead = true;
 			}
 		}
@@ -158,13 +158,14 @@ public class combat{
 			if(e_speed >= p_speed)
 				//some kind of boolean
 				//some kind of "Enemy fled" in the text box
-				combat_over = true;
+				combat = false;
 			else{
-				//enemy is stuck..
+				//enemy is stuck in battle..
 			}
 		}
 		else{
 			enemy_dead = true;
+			//i have no idea how much to add to experience for this...
 			pro.set_experience(p_experience + 5);
 		}
 		return;
@@ -178,8 +179,8 @@ public class combat{
 		return enemy_dead;
 	}
 
-	public boolean check_combatover(){
-		return combat_over;
+	public boolean check_combat(){
+		return combat;
 	}
 
 }
