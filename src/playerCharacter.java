@@ -25,6 +25,9 @@ public class playerCharacter extends Creature
 	private int bifurcator = 0;
 	private int pythagoreanserum = 0;
 	
+	// Boolean array of wearable items (True = in inventory, not worn)
+	private boolean[] inventory = new boolean [10] ;
+	
 	private String wearing = "";
 	
 	// Getter method for charShape:
@@ -56,6 +59,10 @@ public class playerCharacter extends Creature
 	{
 		return pythagoreanserum;
 	}
+	public boolean get_inventory(int target)
+	{
+		return inventory[target];
+	}
 	
 	// Setters for items:
 	public void set_archimead(int newval)
@@ -74,35 +81,39 @@ public class playerCharacter extends Creature
 	{
 		pythagoreanserum = newval;
 	}
+	public void set_inventory(int target, boolean val)
+	{
+		inventory[target] = val;
+	}
 	
 	// Getter methods for prices:
 	public int get_hpprice()
 	{
-	return hpprice;
+		return hpprice;
 	}
 	public int get_congruenceprice()
 	{
-	return congruenceprice;
+		return congruenceprice;
 	}
-	public int get_quadsprice()
+		public int get_quadsprice()
 	{
 	return quadsprice;
 	}
-	public int get_acutenessprice()
+		public int get_acutenessprice()
 	{
 	return acutenessprice;
 	}
-	public int get_eccentricityprice()
+		public int get_eccentricityprice()
 	{
-	return eccentricityprice;
+		return eccentricityprice;
 	}
 	public int get_plasticityprice()
 	{
-	return plasticityprice;
+		return plasticityprice;
 	}
 	public int get_sprightlinessprice()
 	{
-	return sprightlinessprice;
+		return sprightlinessprice;
 	}
 	public String get_wearing()
 	{
@@ -406,11 +417,12 @@ public class playerCharacter extends Creature
 			
 			
 			// This is a messy way to do this, but it works.
-			if (towear.equals("Spline"))
+			if (towear.equals("Spline") && inventory[0])
 			{
 				set_eccentricity(get_eccentricity()+4);
+				inventory[0] = false;
 			}
-			else if (towear.equals("Krig"))
+			else if (towear.equals("Krig") && inventory[1])
 			{
 				if(get_eccentricity()<3)
 				{
@@ -420,21 +432,25 @@ public class playerCharacter extends Creature
 				{
 					set_eccentricity(get_eccentricity()-3);
 					set_congruence(get_congruence()+4);
+					inventory[1] = false;
 				}
 			}
-			else if (towear.equals("Sierpin Snow-Skis"))
+			else if (towear.equals("Sierpin Snow-Skis") && inventory[2])
 			{
 				set_acuteness(get_acuteness()+4);
+				inventory[2] = false;
 			}
-			else if (towear.equals("Strange Attractor"))
+			else if (towear.equals("Strange Attractor") && inventory[3])
 			{
 				set_congruence(get_congruence()+2);
+				inventory[3] = false;
 			}
-			else if (towear.equals("Axe of Choice"))
+			else if (towear.equals("Axe of Choice") && inventory[4])
 			{
 				set_quads(get_quads()+4);
+				inventory[4] = false;
 			}
-			else if (towear.equals("Fuzzy Boundary"))
+			else if (towear.equals("Fuzzy Boundary") && inventory[5])
 			{
 				if (get_congruence() < 4)
 				{
@@ -444,21 +460,25 @@ public class playerCharacter extends Creature
 				{
 					set_congruence(get_congruence()-4);
 					set_plasticity(get_plasticity()+5);
+					inventory[5] = false;
 				}
 			}
-			else if (towear.equals("Lacy Gödel"))
+			else if (towear.equals("Lacy Gödel") && inventory[6])
 			{
 				set_congruence(get_congruence()+5);
+				inventory[6] = false;
 			}
-			else if (towear.equals("Gauss Hand-Cannon"))
+			else if (towear.equals("Gauss Hand-Cannon") && inventory[7])
 			{
 				set_acuteness(get_acuteness()+4);
+				inventory[7] = false;
 			}
-			else if (towear.equals("Brass Knuthles"))
+			else if (towear.equals("Brass Knuthles") && inventory[8])
 			{
 				set_quads(get_quads()+3);
+				inventory[8] = false;
 			}
-			else if (towear.equals("Greeble"))
+			else if (towear.equals("Greeble") && inventory[9])
 			{
 				if(get_congruence()<5)
 				{
@@ -469,6 +489,7 @@ public class playerCharacter extends Creature
 					set_congruence(get_congruence()-5);
 					set_quads(get_quads()+4);
 					set_eccentricity(get_eccentricity()+5);
+					inventory[9] = false;
 				}
 			}
 			else
