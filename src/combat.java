@@ -52,9 +52,7 @@ public class combat{
 
 		this.pro = pro;
 		this.bad = bad;
-	}
 
-	public void p_attack(){
 		if(p_shape.equals("Circle")){
 			p_atk_pwr = p_magic;
 		}
@@ -64,8 +62,16 @@ public class combat{
 		else if(p_shape.equals("Square")){
 			p_atk_pwr = p_strength;
 		}
-		e_curhp -= p_atk_pwr;
+	}
 
+	public void p_attack(){
+		int dmg = p_atk_pwr - e_defense;
+		if(dmg <= 0){
+			e_curhp -= 1;
+		}
+		else{
+			e_curhp -= dmg;
+		}	
 		bad.set_curhp(e_curhp);
 
 		return;
@@ -127,12 +133,11 @@ public class combat{
 
 		if(e_curhp > (0.1*e_maxhp)){
 			if(def){
-				damage = (int)(0.5*e_strength) - p_atk_pwr;
+				damage = (int)(0.5*e_strength) - p_defense;
 				def = false;
 			}
-
 			else
-				damage = e_strength - p_atk_pwr;
+				damage = e_strength - p_defense;
 
 			if(damage < 0)
 				damage = 0;
