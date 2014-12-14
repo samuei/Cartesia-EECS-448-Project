@@ -581,7 +581,7 @@
         <Component class="javax.swing.JButton" name="Square">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Danilo\Desktop\Final Project\okbutton.png"/>
+              <Image iconType="2" name="C:\Users\Danilo\Documents\NetBeansProjects\EECS448_Project1\Images\Square.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="asdf"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>

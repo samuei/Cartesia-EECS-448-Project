@@ -39,7 +39,7 @@ public class NewJFrame extends javax.swing.JFrame {
     
     //Battle Buttons
     int sizeBattleButtonx=400;
-    int sizeBattleButtony=100;
+    int sizeBattleButtony=200;
     //Inventory Buttons
       int sizeBattleInventoryButtonx=320;
     int sizeBattleInventoryButtony=100;
@@ -70,10 +70,7 @@ public class NewJFrame extends javax.swing.JFrame {
      
      //Labels
        BackGround.setSize(x*1440/1920,y*810/1080);
-     ImageIcon a = new javax.swing.ImageIcon("C:\\\\Users\\\\Danilo\\\\Documents\\\\NetBeansProjects\\\\EECS448_Project1\\\\Images\\\\1.jpg");
    
-        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
-        BackGround.setIcon(icon); // NOI18N\
         
          BattleLabelDown.setSize(880*x/1920,y*270/1080);
          BattleLabelDown.setLocation(0, y*(810)/1080);
@@ -108,7 +105,7 @@ public class NewJFrame extends javax.swing.JFrame {
      //Option Buttons
 
       ImageIcon e = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\BattleButton.png");
-            ImageIcon icon5=new ImageIcon(ScaledImage(e, (int) (AttackButton.getWidth()*0.7), (int) (AttackButton.getHeight()*0.7)));
+            ImageIcon icon5=new ImageIcon(ScaledImage(e, (int) (sizeBattleButtonx), (int) (sizeBattleButtony)));
       
  AttackButton.setSize(sizeBattleButtonx,sizeBattleButtony);
  AttackButton.setLocation(1000*x/1920, 840*y/1080);
@@ -126,22 +123,16 @@ public class NewJFrame extends javax.swing.JFrame {
     //Inventory Buttons
   
     
-     ImageIcon f = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\BattleItemButton.png");
-            ImageIcon icon6=new ImageIcon(ScaledImage(f, (int) (AttackButton.getWidth()*0.8), (int) (AttackButton.getHeight()*0.95)));
-      
-    
+  
     BifurcatorButton.setSize(0,0);
     BifurcatorButton.setLocation(1463*x/1920, 377*y/1080);
-    BifurcatorButton.setIcon(icon6);
     CrystalMathButton.setSize(0,0);
     CrystalMathButton.setLocation(1463*x/1920,512*y/1080);
-    CrystalMathButton.setIcon(icon6);
     ArchimeadButton.setSize(0,0);
     ArchimeadButton.setLocation(1463*x/1920,648*y/1080);
-    ArchimeadButton.setIcon(icon6);
     PithagoreanButton.setSize(0,0);
     PithagoreanButton.setLocation(1463*x/1920, 240*y/1080);
-    PithagoreanButton.setIcon(icon6);
+
                
     //Text Buttons Inventory
    
@@ -168,16 +159,16 @@ public class NewJFrame extends javax.swing.JFrame {
      Font Options=new Font("Arial",Font.PLAIN,(int) 48*x/1920);
     
         AttackButtonText.setSize(sizeBattleOptionButtonTextx,sizeBattleOptionButtonTexty);
-  AttackButtonText.setLocation(1130*x/1920, 840*y/1080);
+  AttackButtonText.setLocation(1130*x/1920, 860*y/1080);
   AttackButtonText.setFont(Options);
     DefendText.setSize(sizeBattleOptionButtonTextx,sizeBattleOptionButtonTexty);
-    DefendText.setLocation(1580*x/1920, 840*y/1080);
+    DefendText.setLocation(1580*x/1920, 860*y/1080);
     DefendText.setFont(Options);
     ItemText.setSize(sizeBattleOptionButtonTextx,sizeBattleOptionButtonTexty);
-    ItemText.setLocation(1140*x/1920,960*y/1080);
+    ItemText.setLocation(1140*x/1920,980*y/1080);
     ItemText.setFont(Options);
     FleeText.setSize(sizeBattleOptionButtonTextx,sizeBattleOptionButtonTexty);
-    FleeText.setLocation(1620*x/1920,960*y/1080);
+    FleeText.setLocation(1620*x/1920,980*y/1080);
     FleeText.setFont(Options);
     
     //Qty Text
@@ -244,7 +235,19 @@ PhaseChangeText.setSize(0, 0);
            PhaseChangeText.setText("");
        }
     public void ItemsOn(){
-        
+            
+     ImageIcon f = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\BattleItemButton.png");
+            ImageIcon icon6=new ImageIcon(ScaledImage(f, (int) (sizeBattleInventoryButtonx), (int) (sizeBattleInventoryButtony)));
+      
+    
+
+    BifurcatorButton.setIcon(icon6);
+
+    CrystalMathButton.setIcon(icon6);
+
+    ArchimeadButton.setIcon(icon6);
+
+    PithagoreanButton.setIcon(icon6);
             BifurcatorButton.setSize(sizeBattleInventoryButtonx,sizeBattleInventoryButtony);
   
 
@@ -302,17 +305,28 @@ PhaseChangeText.setSize(0, 0);
    
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N\
-        Okbutton.setSize(290*x/1920,100*y/1080);
-        Okbutton.setLocation(1570*x/1920, 940*y/1080);
-         ImageIcon b = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\okbutton.png");
-   
-        ImageIcon icon1=new ImageIcon(ScaledImage(b,Okbutton.getWidth(),Okbutton.getHeight()));
-       Okbutton.setIcon(icon1);
-        OkText.setSize(170*x/1920,60*y/1080);
-        OkText.setLocation(1630*x/1920, 960*y/1080);
-        Font Continue=new Font("Arial",Font.PLAIN,(int) 36*x/1920);
-        OkText.setFont(Continue);
+    SetOkbutton();
         
+    
+    //Update the size of buttons by the size of the screen
+    sizeBattleButtonx=sizeBattleButtonx*x/1920;
+        sizeBattleButtony=sizeBattleButtony*y/1920;
+        
+        sizeBattleInventoryButtonx=sizeBattleInventoryButtonx*x/1920;
+        sizeBattleInventoryButtony=sizeBattleInventoryButtony*y/1080;
+        sizeBattleInventoryButtonTextx=sizeBattleInventoryButtonTextx*x/1920;
+        sizeBattleInventoryButtonTexty=sizeBattleInventoryButtonTexty*y/1080;
+sizeBattleOptionButtonTextx=sizeBattleOptionButtonTextx*x/1920;
+sizeBattleOptionButtonTexty=sizeBattleOptionButtonTexty*y/1080;
+    sizeBattleItemQtyx=sizeBattleItemQtyx*x/1920;
+    sizeBattleItemQtyy=sizeBattleItemQtyy*y/1080;
+
+    ExitButton.setSize(50*x/1920,50*y/1080);
+    ExitButton.setLocation(1870*x/1920, 0);
+ ImageIcon b = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\exitbutton.png");
+   
+        ImageIcon icon1=new ImageIcon(ScaledImage(b,ExitButton.getWidth(),ExitButton.getHeight()));
+        ExitButton.setIcon(icon1);
          
          
     }
@@ -622,7 +636,7 @@ PhaseChangeText.setSize(0, 0);
         jPanel1.add(Circle);
         Circle.setBounds(840, 570, 0, 0);
 
-        Square.setIcon(new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\okbutton.png")); // NOI18N
+        Square.setIcon(new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Square.png")); // NOI18N
         Square.setToolTipText("asdf");
         Square.setContentAreaFilled(false);
         Square.addActionListener(new java.awt.event.ActionListener() {
@@ -710,32 +724,57 @@ CountOkbutton++;
         Square.setSize(350*x/1920,200*y/1080);
         Circle.setSize(350*x/1920,200*y/1080);
        Triangle.setLocation(100*x/1920,500*y/1080);
-            ImageIcon b = new javax.swing.ImageIcon("C:\\\\Users\\\\Danilo\\\\Documents\\\\NetBeansProjects\\\\EECS448_Project1\\\\Images\\\\scene2.jpg");
+            ImageIcon b = new javax.swing.ImageIcon("C:\\\\Users\\\\Danilo\\\\Documents\\\\NetBeansProjects\\\\EECS448_Project1\\\\Images\\\\Triangle.png");
         ImageIcon icon2=new ImageIcon(ScaledImage(b,Triangle.getWidth(),Triangle.getHeight()));
         Triangle.setIcon(icon2); 
        Square.setLocation(500*x/1920,500*y/1080);
+        ImageIcon c = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Square.png");
+        ImageIcon icon3=new ImageIcon(ScaledImage(c,Square.getWidth(),Square.getHeight()));
+        Square.setIcon(icon3); 
        Circle.setLocation(900*x/1920,500*y/1080);
-              ImageIcon d = new javax.swing.ImageIcon("C:\\\\Users\\\\Danilo\\\\Documents\\\\NetBeansProjects\\\\EECS448_Project1\\\\Images\\\\circle.png");
+              ImageIcon d = new javax.swing.ImageIcon("C:\\\\Users\\\\Danilo\\\\Documents\\\\NetBeansProjects\\\\EECS448_Project1\\\\Images\\\\Circle.png");
         ImageIcon icon4=new ImageIcon(ScaledImage(d,Circle.getWidth(),Circle.getHeight()));
-        Triangle.setIcon(icon4); 
+        Circle.setIcon(icon4); 
        Okbutton.setSize(0,0);
+       OkText.setSize(0,0);
         }
         
         if(CountOkbutton==2){
-             ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\3.png");
+            if(Path==1){
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene4(triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
-        MsgText.setText("<html><body>So, I decided to write my own world...<br></body></html>");
-
+            }
+               if(Path==2){
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene4(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                  if(Path==3){
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene4(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+             
         }
           if(CountOkbutton==3){
-             ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\4.png");
+                  if(Path==1){
+                  
+        BattleMode();
+         ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene5(Adder,triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
-        OkText.setSize(0, 0);
-        Okbutton.setSize(0,0);
-      
-        MsgText.setSize(0,0);
+            }
+               if(Path==2){
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene5(Adder,square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                  if(Path==3){
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene5(Adder,circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
  
         }
        
@@ -985,17 +1024,50 @@ Case=5;
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
       super.dispose();
     }//GEN-LAST:event_ExitButtonActionPerformed
-
+int Path;
+public void SetOkbutton(){
+        Okbutton.setSize(290*x/1920,100*y/1080);
+        Okbutton.setLocation(1570*x/1920, 80*y/1080);
+         OkText.setSize(170*x/1920,60*y/1080);
+        OkText.setLocation(1630*x/1920, 100*y/1080);
+        Font Continue=new Font("Arial",Font.PLAIN,(int) 36*x/1920);
+        OkText.setFont(Continue);
+        ImageIcon b = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\okbutton.png");
+   
+        ImageIcon icon1=new ImageIcon(ScaledImage(b,Okbutton.getWidth(),Okbutton.getHeight()));
+       Okbutton.setIcon(icon1);
+}
     private void TriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TriangleActionPerformed
-        // TODO add your handling code here:
+       Path=1;
+      ImageIcon c = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene3(triangle).jpg");
+        ImageIcon icon3=new ImageIcon(ScaledImage(c,BackGround.getWidth(),BackGround.getHeight()));
+       Triangle.setSize(0,0);
+       Square.setSize(0,0);
+       Circle.setSize(0,0);
+      SetOkbutton();
+       BackGround.setIcon(icon3);
     }//GEN-LAST:event_TriangleActionPerformed
 
     private void CircleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleActionPerformed
-        // TODO add your handling code here:
+Path=3;
+      ImageIcon c = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene3(circle).jpg");
+        ImageIcon icon3=new ImageIcon(ScaledImage(c,BackGround.getWidth(),BackGround.getHeight()));
+       Triangle.setSize(0,0);
+       Square.setSize(0,0);
+       Circle.setSize(0,0);
+      SetOkbutton();
+       BackGround.setIcon(icon3);
     }//GEN-LAST:event_CircleActionPerformed
 
     private void SquareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SquareActionPerformed
-        // TODO add your handling code here:
+Path=2;
+      ImageIcon c = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene3(square).jpg");
+        ImageIcon icon3=new ImageIcon(ScaledImage(c,BackGround.getWidth(),BackGround.getHeight()));
+       Triangle.setSize(0,0);
+       Square.setSize(0,0);
+       Circle.setSize(0,0);
+      SetOkbutton();
+       BackGround.setIcon(icon3);
     }//GEN-LAST:event_SquareActionPerformed
 
     /**
