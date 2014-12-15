@@ -87,7 +87,7 @@ public class NewJFrame extends javax.swing.JFrame {
 	private boolean enemy_dead = false;
 	private boolean player_dead = false;
 
-	public combat(playerCharacter pro, Creature bad){
+	public void initiateCombat(playerCharacter pro, Creature bad){
 
 		p_shape = pro.get_charShape();
 		p_curhp = pro.get_curhp();
@@ -122,7 +122,7 @@ public class NewJFrame extends javax.swing.JFrame {
 		}
 	}
 
-	public void p_attack(){
+	public int p_attack(){
 		int dmg = p_atk_pwr - e_defense;
 		if(dmg <= 0){
 			e_curhp -= 1;
@@ -131,6 +131,7 @@ public class NewJFrame extends javax.swing.JFrame {
 			e_curhp -= dmg;
 		}	
 		bad.set_curhp(e_curhp);
+                return e_curhp;
 	}
 
 	public void p_defend(){
@@ -989,7 +990,7 @@ HealthMonster.setValue(Adder.get_curhp());
 HealthMonster.setMaximum(Adder.get_maxhp());
 MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
 
-PC.get_curhp();
+
 PlayerHealth.setValue(PC.get_curhp());
 PlayerHealth.setMaximum(PC.get_maxhp());
 PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
@@ -998,7 +999,7 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
          ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene5(Adder,triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
-       monster = new combat(PC,Adder);
+       monster.initiateCombat(PC,Adder);
      
             }
                if(Path==2){
@@ -1021,7 +1022,8 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
 
     private void AttackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AttackButtonActionPerformed
 Case=1;
-        ItemsOff(); 
+
+ItemsOff(); 
 MonsterTurn();// TODO add your handling code here:
  BattleLabelDownText.setText("<html><body>You attacked the monster!<br></body></html>"
          
@@ -1029,15 +1031,9 @@ MonsterTurn();// TODO add your handling code here:
             
        
      );
+
  
- monster.p_attack();
- HealthMonster.setValue(Adder.get_curhp());
-HealthMonster.setMaximum(Adder.get_maxhp());
-MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
-PC.get_curhp();
-PlayerHealth.setValue(PC.get_curhp());
-PlayerHealth.setMaximum(PC.get_maxhp());
-PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+
  
     }//GEN-LAST:event_AttackButtonActionPerformed
 
@@ -1100,7 +1096,13 @@ Case=5;
          if(Count==1){
      BattleLabelDownText.setText("<html><body>The monster received damage!<br></body></html>"
      );
+     int temp = 3;
+         Adder.set_curhp(temp);
+ HealthMonster.setValue(temp);
+HealthMonster.setMaximum(Adder.get_maxhp());
+MonsterHealthText.setText(temp+"/"+Adder.get_maxhp());
      monster.check_enemydead();
+    
     }
     if(Count==2){
              BattleLabelDownText.setText("<html><body>Now it is monster turn!<br></body></html>"
@@ -1124,7 +1126,7 @@ Case=5;
     //Defend
         if(Case==2){
          if(Count==1){
-     BattleLabelDownText.setText("<html><body>The monster received damage!<br></body></html>"
+     BattleLabelDownText.setText("<html><body>You defended from the monster!<br></body></html>"
      );
     }
     if(Count==2){
@@ -1201,6 +1203,7 @@ Case=5;
          if(Count==1){
      BattleLabelDownText.setText("<html><body>The monster received damage!<br></body></html>"
      );
+     
     }
     if(Count==2){
              BattleLabelDownText.setText("<html><body>Now it is monster turn!<br></body></html>"
