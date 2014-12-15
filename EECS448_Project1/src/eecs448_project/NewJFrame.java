@@ -58,17 +58,17 @@ public class NewJFrame extends javax.swing.JFrame {
 
      public class combat{
 
-	private String p_shape;
-	private int p_curhp;
-	private int p_charisma;
-	private int p_strength;
-	private int p_dexterity;
+	public String p_shape;
+	public int p_curhp;
+	public int p_charisma;
+	public int p_strength;
+	public int p_dexterity;
 	private int p_magic;
 	private int p_defense;
 	private int p_speed;
 	private int p_experience;
 
-	private int p_atk_pwr;
+	public int p_atk_pwr;
 	private boolean def;
 
 	private int e_curhp;
@@ -76,7 +76,7 @@ public class NewJFrame extends javax.swing.JFrame {
 	private int e_strength;
 	private int e_dexterity;
 	private int e_magic;
-	private int e_defense;
+	public int e_defense;
 	private int e_speed;
 	private int e_maxhp;
 
@@ -1096,12 +1096,13 @@ Case=5;
          if(Count==1){
      BattleLabelDownText.setText("<html><body>The monster received damage!<br></body></html>"
      );
-     int temp = 3;
+     int temp = PC.get_acuteness();
+     temp = Adder.get_curhp()-temp;
          Adder.set_curhp(temp);
  HealthMonster.setValue(temp);
 HealthMonster.setMaximum(Adder.get_maxhp());
-MonsterHealthText.setText(temp+"/"+Adder.get_maxhp());
-     monster.check_enemydead();
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+     
     
     }
     if(Count==2){
