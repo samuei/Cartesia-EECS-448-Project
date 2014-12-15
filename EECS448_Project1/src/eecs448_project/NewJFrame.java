@@ -616,6 +616,7 @@ PhaseChangeText.setSize(0, 0);
     
    playerCharacter PC;
           Creature Adder;
+        
     public NewJFrame() {
         initComponents();
 
@@ -664,16 +665,8 @@ sizeBattleOptionButtonTexty=sizeBattleOptionButtonTexty*y/1080;
         ExitButton.setIcon(icon1);
          
         
-                        Adder = new Creature();
-Adder.set_maxhp(5);
-Adder.set_curhp(5);
-Adder.set_congruence(1);
-Adder.set_quads(2);
-Adder.set_acuteness(2);
-Adder.set_eccentricity(1);
-Adder.set_experience(0);
-Adder.set_plasticity(0);
-Adder.set_sprightliness(1);
+
+
 
 
            PC = new playerCharacter();
@@ -690,6 +683,18 @@ PC.set_archimead(1);
 PC.set_crystalmath(1);
 PC.set_bifurcator(1);
 PC.set_pythagoreanserum(1);
+
+                        Adder = new Creature();
+Adder.set_maxhp(5);
+Adder.set_curhp(5);
+Adder.set_congruence(1);
+Adder.set_quads(2);
+Adder.set_acuteness(2);
+Adder.set_eccentricity(1);
+Adder.set_experience(0);
+Adder.set_plasticity(0);
+Adder.set_sprightliness(1);
+
 
 
          
@@ -1218,8 +1223,427 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
               }
         
           }
+          
+                    if(CountOkbutton==6){   
+                        //Hippopotanus
+                                               Adder = new Creature();
+Adder.set_maxhp(10);
+Adder.set_curhp(10);
+Adder.set_congruence(1);
+Adder.set_quads(2);
+Adder.set_acuteness(2);
+Adder.set_eccentricity(1);
+Adder.set_experience(0);
+Adder.set_plasticity(0);
+Adder.set_sprightliness(1);
+
+PC.set_curhp(PC.get_maxhp());
+
+
+                  if(Path==1){
+                  
+        BattleMode();
+
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+PC.set_curhp(PC.get_maxhp());
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+        
+        
+         ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Hippopotanus(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+       monster.initiateCombat(PC,Adder);
+     
+            }
+               if(Path==2){
+                    BattleMode();
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                    
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Hippopotanus(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                  if(Path==3){
+                       BattleMode();
        
-   
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                       
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Hippopotanus(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+          
+       
+                    }
+                    if(CountOkbutton==7){
+                       if(PC.get_charShape()=="Triangle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Axe-of-choice(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+       PC.set_quads(PC.get_quads()+4);
+        
+                                        }
+                                             if(PC.get_charShape()=="Circle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Axe-of-choice(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+    PC.set_quads(PC.get_quads()+4);
+       
+        
+                                        }
+                                                  if(PC.get_charShape()=="Square"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Axe-of-choice(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+      PC.set_quads(PC.get_quads()+4);
+                                        }
+                    }
+                    
+                                if(CountOkbutton==8){
+                       if(PC.get_charShape()=="Triangle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Lacy-godel(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+        PC.set_congruence(PC.get_congruence()+4);
+        
+                                        }
+                                             if(PC.get_charShape()=="Circle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Lacy-godel(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+      PC.set_congruence(PC.get_congruence()+4);
+       
+        
+                                        }
+                                                  if(PC.get_charShape()=="Square"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Lacy-godel(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+      PC.set_congruence(PC.get_congruence()+4);
+                                        }
+                    }
+                                
+                                
+                                            if(CountOkbutton==9){
+        
+                                                                        //Octopi
+                                               Adder = new Creature();
+Adder.set_maxhp(30);
+Adder.set_curhp(30);
+Adder.set_congruence(1);
+Adder.set_quads(2);
+Adder.set_acuteness(2);
+Adder.set_eccentricity(1);
+Adder.set_experience(0);
+Adder.set_plasticity(0);
+Adder.set_sprightliness(1);
+
+PC.set_curhp(PC.get_maxhp());
+
+                  if(Path==1){
+                  
+        BattleMode();
+
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+PC.set_curhp(PC.get_maxhp());
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+        
+        
+         ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Octopi(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+       monster.initiateCombat(PC,Adder);
+     
+            }
+               if(Path==2){
+                    BattleMode();
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                    
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Octopi(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                  if(Path==3){
+                       BattleMode();
+       
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                       
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Octopi(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                                                
+                                                
+                                                
+                                                
+                                                
+                    }
+                                            
+                                            
+                                            
+       if(CountOkbutton==10){
+                                                
+                                  if(Monsters==3){
+                                             BattleModeOff();
+                                        StoryMode();
+                                        if(PC.get_charShape()=="Triangle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Gauss-hand-cannon(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+        PC.set_acuteness(PC.get_acuteness()+4);
+        
+        
+                                        }
+                                             if(PC.get_charShape()=="Circle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Gauss-hand-cannon(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+        PC.set_acuteness(PC.get_acuteness()+4);
+        
+                                        }
+                                                  if(PC.get_charShape()=="Square"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Gauss-hand-cannon(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+           PC.set_acuteness(PC.get_acuteness()+4);
+                                        }
+                                      
+                                        
+                                            
+                                        }                              
+                                                
+                                                
+                                                
+                                            }
+                                                   if(CountOkbutton==11){
+        
+                                                                        //Geometree
+                                               Adder = new Creature();
+Adder.set_maxhp(50);
+Adder.set_curhp(50);
+Adder.set_congruence(1);
+Adder.set_quads(6);
+Adder.set_acuteness(2);
+Adder.set_eccentricity(1);
+Adder.set_experience(0);
+Adder.set_plasticity(0);
+Adder.set_sprightliness(1);
+
+PC.set_curhp(PC.get_maxhp());
+
+                  if(Path==1){
+                  
+        BattleMode();
+
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+PC.set_curhp(PC.get_maxhp());
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+        
+        
+         ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Geometree(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+       monster.initiateCombat(PC,Adder);
+     
+            }
+               if(Path==2){
+                    BattleMode();
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                    
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Geometree(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                  if(Path==3){
+                       BattleMode();
+       
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                       
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Geometree(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                                                
+                                                
+                                                
+                                                
+                                                
+                    }
+                                                   
+                                                                        if(CountOkbutton==12){
+                                             BattleModeOff();
+                                        StoryMode();
+                                        if(PC.get_charShape()=="Triangle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Approach(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+
+        
+        
+                                        }
+                                             if(PC.get_charShape()=="Circle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Approach(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+
+        
+                                        }
+                                                  if(PC.get_charShape()=="Square"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Approach(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+
+                                        }
+                                      
+                                        
+                                            
+                                        }
+                                                                        
+                                                                        
+                                              if(CountOkbutton==13){
+        
+                                                                        //Cardinal
+                                               Adder = new Creature();
+Adder.set_maxhp(100);
+Adder.set_curhp(100);
+Adder.set_congruence(1);
+Adder.set_quads(7);
+Adder.set_acuteness(2);
+Adder.set_eccentricity(1);
+Adder.set_experience(0);
+Adder.set_plasticity(0);
+Adder.set_sprightliness(100);
+
+PC.set_curhp(PC.get_maxhp());
+
+                  if(Path==1){
+                  
+        BattleMode();
+
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+PC.set_curhp(PC.get_maxhp());
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+        
+        
+         ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Cardinal(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+       monster.initiateCombat(PC,Adder);
+     
+            }
+               if(Path==2){
+                    BattleMode();
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                    
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Cardinal(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                  if(Path==3){
+                       BattleMode();
+       
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                       
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Cardinal(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                                                
+                                                
+                                                
+                                                
+                                                
+                    }
+       
+       
     }//GEN-LAST:event_OkbuttonActionPerformed
 
     private void AttackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AttackButtonActionPerformed
@@ -1324,11 +1748,14 @@ playerCharacter Init;
      );
      int temp = Atk_pw2 - Adder.get_plasticity();
             ;
-     temp = Adder.get_curhp()-temp;
+            if(temp>0){
+                     temp = Adder.get_curhp()-temp;
          Adder.set_curhp(temp);
  HealthMonster.setValue(temp);
 HealthMonster.setMaximum(Adder.get_maxhp());
-MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());     
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp()); 
+            }
+    
     
     }
     if(Count==2){
@@ -1345,12 +1772,20 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
     if(Count==4){
         
                            int temp = Adder.get_quads()-PC.get_plasticity();
-               temp = PC.get_curhp()-temp;
-         PC.set_curhp(temp);
+                               if(temp>0){
+                                       temp = PC.get_curhp()-temp;
+                                   } else {
+                                       temp = PC.get_curhp();
+                                   }
+        
+             
+                           PC.set_curhp(temp);
  PlayerHealth.setValue(temp);
 PlayerHealth.setMaximum(PC.get_maxhp());
 PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());  
-         BattleLabelDownText.setText("<html><body>You received damage!<br></body></html>"
+     
+               
+     BattleLabelDownText.setText("<html><body>You received damage!<br></body></html>"
      );
         
     }
@@ -1382,11 +1817,19 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
          BattleLabelDownText.setText("<html><body>You received damage!<br></body></html>"
      );
                                    int temp = (int) (Adder.get_quads()*0.5 -PC.get_plasticity());
-               temp = PC.get_curhp()-temp;
-         PC.set_curhp(temp);
+                                   if(temp>0){
+                                       temp = PC.get_curhp()-temp;
+                                   } else {
+                                       temp = PC.get_curhp();
+                                   }
+               
+               
+                           PC.set_curhp(temp);
  PlayerHealth.setValue(temp);
 PlayerHealth.setMaximum(PC.get_maxhp());
-PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());  
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());   
+              
+
     }
      if(Count==5){
              PlayerTurn();
@@ -1442,6 +1885,190 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
         BackGround.setIcon(icon);
               }
                 }
+                if(Monsters==2){
+                                                                       //Octopi
+                                               Adder = new Creature();
+Adder.set_maxhp(30);
+Adder.set_curhp(30);
+Adder.set_congruence(1);
+Adder.set_quads(2);
+Adder.set_acuteness(2);
+Adder.set_eccentricity(1);
+Adder.set_experience(0);
+Adder.set_plasticity(0);
+Adder.set_sprightliness(1);
+
+PC.set_curhp(PC.get_maxhp());
+
+                  if(Path==1){
+                  
+        BattleMode();
+
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+PC.set_curhp(PC.get_maxhp());
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+        
+        
+         ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Octopi(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+       monster.initiateCombat(PC,Adder);
+     
+            }
+               if(Path==2){
+                    BattleMode();
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                    
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Octopi(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                  if(Path==3){
+                       BattleMode();
+       
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                       
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Octopi(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                                                
+                                                
+                                                
+                                                
+                                                
+                    
+    }
+                
+                                                                   if(Monsters==3){
+        
+                                                                        //Geometree
+                                               Adder = new Creature();
+Adder.set_maxhp(50);
+Adder.set_curhp(50);
+Adder.set_congruence(1);
+Adder.set_quads(6);
+Adder.set_acuteness(2);
+Adder.set_eccentricity(1);
+Adder.set_experience(0);
+Adder.set_plasticity(0);
+Adder.set_sprightliness(1);
+
+PC.set_curhp(PC.get_maxhp());
+
+                  if(Path==1){
+                  
+        BattleMode();
+
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+PC.set_curhp(PC.get_maxhp());
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+        
+        
+         ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Geometree(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+       monster.initiateCombat(PC,Adder);
+     
+            }
+               if(Path==2){
+                    BattleMode();
+
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                    
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Geometree(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                  if(Path==3){
+                       BattleMode();
+       
+HealthMonster.setMaximum(Adder.get_maxhp());
+HealthMonster.setValue(Adder.get_curhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                       
+                   ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Geometree(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon); // NOI18N
+            }
+                                                
+                                                
+                                                
+                                                
+                                                
+                    }
+                                                                                 if(Monsters==4){
+                    CountOkbutton=11;
+                    
+                                                            BattleModeOff();
+                                        StoryMode();
+                                        if(PC.get_charShape()=="Triangle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Approach(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+
+        
+        
+                                        }
+                                             if(PC.get_charShape()=="Circle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Approach(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+
+        
+                                        }
+                                                  if(PC.get_charShape()=="Square"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Approach(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+
+                                        }
+                                      
+         
+                }
+                
+                
         }
         
         
@@ -1650,6 +2277,99 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
                                         
                                             
                                         }
+                                        if(Monsters==2){
+                                             BattleModeOff();
+                                        StoryMode();
+                                        if(PC.get_charShape()=="Triangle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Krig(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+        PC.set_eccentricity(PC.get_eccentricity()+1);
+        PC.set_congruence(PC.get_congruence()+4);
+        
+                                        }
+                                             if(PC.get_charShape()=="Circle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Krig(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+    PC.set_eccentricity(PC.get_eccentricity()+1);
+        PC.set_congruence(PC.get_congruence()+4);
+        
+                                        }
+                                                  if(PC.get_charShape()=="Square"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Krig(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+         PC.set_eccentricity(PC.get_eccentricity()+1);
+        PC.set_congruence(PC.get_congruence()+4);
+                                        }
+                                      
+                                        
+                                            
+                                        }
+                                        
+                                              if(Monsters==3){
+                                             BattleModeOff();
+                                        StoryMode();
+                                        if(PC.get_charShape()=="Triangle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Fuzzy-boundary(Triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+        PC.set_plasticity(PC.get_plasticity()+4);
+        
+        
+                                        }
+                                             if(PC.get_charShape()=="Circle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Fuzzy-boundary(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+ PC.set_plasticity(PC.get_plasticity()+4);
+        
+                                        }
+                                                  if(PC.get_charShape()=="Square"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Fuzzy-boundary(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+     PC.set_plasticity(PC.get_plasticity()+4);
+                                        }
+                                      
+                                        
+                                            
+                                        }
+                                              
+                                                            if(Monsters==4){
+                                             BattleModeOff();
+                                        StoryMode();
+                                        if(PC.get_charShape()=="Triangle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Greeble(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+        PC.set_quads(PC.get_quads()+4);
+        PC.set_eccentricity(PC.get_eccentricity()+4);
+        
+        
+                                        }
+                                             if(PC.get_charShape()=="Circle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Greeble(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+   PC.set_quads(PC.get_quads()+4);
+        PC.set_eccentricity(PC.get_eccentricity()+4);
+        
+                                        }
+                                                  if(PC.get_charShape()=="Square"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Greeble(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+   PC.set_quads(PC.get_quads()+4);
+        PC.set_eccentricity(PC.get_eccentricity()+4);
+                                        }
+                                      
+                                        
+                                            
+                                        }
+                                         
+                                        
                                         
                                      
                                         PlayerTurn();
@@ -1665,9 +2385,15 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
                                 }
                                     if(Count==2){
                                     
+                                          BattleLabelDownText.setText("<html><body>Game Over!<br></body></html>");
                                         
+                                      
+                                    }
+                                      if(Count==3){
+                                    
+                                          Count=0;
                                         
-                                        Count=0;
+                                      
                                     }
                                   
                                 
@@ -1759,6 +2485,7 @@ public class Creature
 	public void set_quads(int newval)
 	{
 		quads = newval;
+                
 	}
 	public void set_acuteness(int newval)
 	{
