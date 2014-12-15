@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.util.Scanner;
 import static javafx.scene.text.Font.font;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -54,6 +55,189 @@ public class NewJFrame extends javax.swing.JFrame {
     //Qty Text
            int sizeBattleItemQtyx=50;
     int sizeBattleItemQtyy=80;
+
+     public class combat{
+
+	private String p_shape;
+	private int p_curhp;
+	private int p_charisma;
+	private int p_strength;
+	private int p_dexterity;
+	private int p_magic;
+	private int p_defense;
+	private int p_speed;
+	private int p_experience;
+
+	private int p_atk_pwr;
+	private boolean def;
+
+	private int e_curhp;
+	private int e_charisma;
+	private int e_strength;
+	private int e_dexterity;
+	private int e_magic;
+	private int e_defense;
+	private int e_speed;
+	private int e_maxhp;
+
+	private playerCharacter pro;
+	private Creature bad;
+
+	private boolean combat = true;
+	private boolean enemy_dead = false;
+	private boolean player_dead = false;
+
+	public combat(playerCharacter pro, Creature bad){
+
+		p_shape = pro.get_charShape();
+		p_curhp = pro.get_curhp();
+		p_charisma = pro.get_congruence();
+		p_strength = pro.get_quads();
+		p_dexterity = pro.get_acuteness();
+		p_magic = pro.get_eccentricity();
+		p_defense = pro.get_plasticity();
+		p_speed = pro.get_sprightliness();
+		p_experience = pro.get_experience();
+
+		e_curhp = bad.get_curhp();
+		e_maxhp = bad.get_maxhp();
+		e_charisma = bad.get_congruence();
+		e_strength = bad.get_quads();
+		e_dexterity = bad.get_acuteness();
+		e_magic = bad.get_eccentricity();
+		e_defense = bad.get_plasticity();
+		e_speed = bad.get_sprightliness();
+
+		this.pro = pro;
+		this.bad = bad;
+
+		if(p_shape.equals("Circle")){
+			p_atk_pwr = p_magic;
+		}
+		else if(p_shape.equals("Triangle")){
+			p_atk_pwr = p_dexterity;
+		}
+		else if(p_shape.equals("Square")){
+			p_atk_pwr = p_strength;
+		}
+	}
+
+	public void p_attack(){
+		int dmg = p_atk_pwr - e_defense;
+		if(dmg <= 0){
+			e_curhp -= 1;
+		}
+		else{
+			e_curhp -= dmg;
+		}	
+		bad.set_curhp(e_curhp);
+	}
+
+	public void p_defend(){
+		def = true;
+	}
+
+	public boolean p_useItem(String item){
+		if(item.equals( "pythagoreanserum")){
+			if(pro.get_pythagoreanserum() >= 1){
+				p_dexterity += 2;
+				pro.set_pythagoreanserum(pro.get_pythagoreanserum()-1);
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else if(item.equals("bifurcator")){
+			pro.usebifurcator(bad);
+                        return true;
+		}
+		else if(item.equals("crystalmath")){
+			if(pro.get_crystalmath() >= 1){
+				//side effects?
+				p_speed += 5;
+				pro.set_crystalmath(pro.get_crystalmath()-1);
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+                
+		else if(item.equals("archimead")){
+			pro.usearchimead();
+			p_curhp = pro.get_curhp();
+                        return true;
+		}
+		else{
+			return false;
+		}
+        }
+
+	public void p_flee(){
+		if(p_speed >= e_speed){
+			//player successfully flees
+			//no exp gain
+			combat = false;
+		}
+		else{
+			//player fails to flee
+		}
+	}
+
+	public void e_turn(){
+		int damage;
+
+		if(e_curhp > (0.1*e_maxhp)){
+			if(def){
+				damage = (int)(0.5*e_strength) - p_defense;
+				def = false;
+			}
+			else
+				damage = e_strength - p_defense;
+
+			if(damage < 0)
+				damage = 0;
+
+			p_curhp -= damage;
+
+			pro.set_curhp(p_curhp);
+
+			//checks to see if player is dead
+			if(p_curhp<=0){
+				combat = false;
+				player_dead = true;
+			}
+		}
+		else if(e_curhp > 0){
+			if(e_speed >= p_speed)
+				//some kind of boolean
+				//some kind of "Enemy fled" in the text box
+				combat = false;
+			else{
+				//enemy is stuck in battle..
+			}
+		}
+		else{
+			enemy_dead = true;
+			//i have no idea how much to add to experience for this...
+			pro.set_experience(p_experience + 5);
+		}
+	}
+
+	public boolean check_playerdead(){
+		return player_dead;
+	}
+
+	public boolean check_enemydead(){
+		return enemy_dead;
+	}
+
+	public boolean check_combat(){
+		return combat;
+	}
+
+}
     
     public void BattleMode(){
                 this.setAlwaysOnTop(false);
@@ -196,9 +380,9 @@ public class NewJFrame extends javax.swing.JFrame {
     PlayerHealthText.setSize(340*x/1920,50*y/1080);
     PlayerHealthText.setLocation(1000*x/1920, 740*y/1080);
     //Monster Helth
-         PlayerHealthMonster.setSize(600*x/1920,80*y/1080);
-     PlayerHealthMonster.setLocation(60*x/1920,40*y/1080);
-     PlayerHealthMonster.setValue(100);
+         HealthMonster.setSize(600*x/1920,80*y/1080);
+     HealthMonster.setLocation(60*x/1920,40*y/1080);
+     HealthMonster.setValue(100);
      
        //Monster Health Text
    MonsterHealthText.setSize(340*x/1920,50*y/1080);
@@ -206,8 +390,16 @@ public class NewJFrame extends javax.swing.JFrame {
 PhaseChange.setSize(0,0);
 PhaseChangeText.setSize(0, 0);
 
+
+
+
+
          
 }
+    
+    
+   
+
     public void MonsterTurn(){
         ItemsOff();
          AttackButton.setEnabled(false);
@@ -280,7 +472,7 @@ PhaseChangeText.setSize(0, 0);
     }
     
    
-         
+          Creature Adder;
     public NewJFrame() {
         initComponents();
 
@@ -328,6 +520,35 @@ sizeBattleOptionButtonTexty=sizeBattleOptionButtonTexty*y/1080;
         ImageIcon icon1=new ImageIcon(ScaledImage(b,ExitButton.getWidth(),ExitButton.getHeight()));
         ExitButton.setIcon(icon1);
          
+        
+                        Adder = new Creature();
+Adder.set_maxhp(5);
+Adder.set_curhp(5);
+Adder.set_congruence(1);
+Adder.set_quads(1);
+Adder.set_acuteness(1);
+Adder.set_eccentricity(1);
+Adder.set_experience(0);
+Adder.set_plasticity(1);
+Adder.set_sprightliness(1);
+
+
+           PC = new playerCharacter();
+PC.set_maxhp(10);
+PC.set_curhp(10);
+PC.set_congruence(1);
+PC.set_quads(1);
+PC.set_acuteness(1);
+PC.set_eccentricity(1);
+PC.set_experience(0);
+PC.set_plasticity(1);
+PC.set_sprightliness(1);
+PC.set_archimead(1);
+PC.set_crystalmath(1);
+PC.set_bifurcator(1);
+PC.set_pythagoreanserum(1);
+
+
          
     }
     
@@ -346,7 +567,7 @@ sizeBattleOptionButtonTexty=sizeBattleOptionButtonTexty*y/1080;
         ExitButton = new javax.swing.JButton();
         PhaseChangeText = new javax.swing.JLabel();
         PhaseChange = new javax.swing.JButton();
-        PlayerHealthMonster = new javax.swing.JProgressBar();
+        HealthMonster = new javax.swing.JProgressBar();
         MonsterHealthText = new javax.swing.JLabel();
         PlayerHealthText = new javax.swing.JLabel();
         PlayerHealth = new javax.swing.JProgressBar();
@@ -417,12 +638,12 @@ sizeBattleOptionButtonTexty=sizeBattleOptionButtonTexty*y/1080;
         jPanel1.add(PhaseChange);
         PhaseChange.setBounds(760, 980, 0, 0);
 
-        PlayerHealthMonster.setBackground(new java.awt.Color(255, 255, 255));
-        PlayerHealthMonster.setForeground(new java.awt.Color(0, 204, 0));
-        PlayerHealthMonster.setValue(10);
-        PlayerHealthMonster.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(PlayerHealthMonster);
-        PlayerHealthMonster.setBounds(60, 40, 0, 0);
+        HealthMonster.setBackground(new java.awt.Color(255, 255, 255));
+        HealthMonster.setForeground(new java.awt.Color(0, 204, 0));
+        HealthMonster.setValue(10);
+        HealthMonster.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(HealthMonster);
+        HealthMonster.setBounds(60, 40, 0, 0);
 
         MonsterHealthText.setBackground(new java.awt.Color(0, 0, 0));
         MonsterHealthText.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
@@ -711,7 +932,7 @@ sizeBattleOptionButtonTexty=sizeBattleOptionButtonTexty*y/1080;
         
      }
 
-    
+    combat monster;
      int CountOkbutton=0;
     private void OkbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkbuttonActionPerformed
 CountOkbutton++;
@@ -761,16 +982,33 @@ CountOkbutton++;
                   if(Path==1){
                   
         BattleMode();
+
+
+
+HealthMonster.setValue(Adder.get_curhp());
+HealthMonster.setMaximum(Adder.get_maxhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+PC.get_curhp();
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+        
+        
          ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene5(Adder,triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
+       monster = new combat(PC,Adder);
+     
             }
                if(Path==2){
+                    BattleMode();
                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene5(Adder,square).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
             }
                   if(Path==3){
+                       BattleMode();
                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene5(Adder,circle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
@@ -786,7 +1024,14 @@ Case=1;
         ItemsOff(); 
 MonsterTurn();// TODO add your handling code here:
  BattleLabelDownText.setText("<html><body>You attacked the monster!<br></body></html>"
+         
+            
+            
+       
      );
+ 
+ monster.p_attack();
+ 
     }//GEN-LAST:event_AttackButtonActionPerformed
 
     private void DefendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DefendButtonActionPerformed
@@ -848,6 +1093,7 @@ Case=5;
          if(Count==1){
      BattleLabelDownText.setText("<html><body>The monster received damage!<br></body></html>"
      );
+     monster.check_enemydead();
     }
     if(Count==2){
              BattleLabelDownText.setText("<html><body>Now it is monster turn!<br></body></html>"
@@ -1025,6 +1271,683 @@ Case=5;
       super.dispose();
     }//GEN-LAST:event_ExitButtonActionPerformed
 int Path;
+public class Creature
+{
+	private int curhp, maxhp, congruence, quads, acuteness, eccentricity, experience, plasticity, sprightliness;
+	
+	// Getter methods for stats:
+	
+	// Returns current Health
+	public int get_curhp()
+	{
+		return curhp;
+	}
+	// Returns maximum Health
+	public int get_maxhp()
+	{
+		return maxhp;
+	}
+	// Returns congruence (cha)
+	public int get_congruence()
+	{
+		return congruence;
+	}
+	// Returns quads (str)
+	public int get_quads()
+	{
+		return quads;
+	}
+	// Returns acuteness (dex)
+	public int get_acuteness()
+	{
+		return acuteness;
+	}
+	// Returns eccentricity (wis)
+	public int get_eccentricity()
+	{
+		return eccentricity;
+	}
+	// Returns experience
+	public int get_experience()
+	{
+		return experience;
+	}
+	// Returns plasticity (def)
+	public int get_plasticity()
+	{
+		return plasticity;
+	}
+	// Returns sprightliness (spd)
+	public int get_sprightliness()
+	{
+		return sprightliness;
+	}
+	
+	// Setter methods for same:
+	
+	public void set_curhp(int newval)
+	{
+		curhp = newval;
+	}
+	public void set_maxhp(int newval)
+	{
+		maxhp = newval;
+	}
+	public void set_congruence(int newval)
+	{
+		congruence = newval;
+	}
+	public void set_quads(int newval)
+	{
+		quads = newval;
+	}
+	public void set_acuteness(int newval)
+	{
+		acuteness = newval;
+	}
+	public void set_eccentricity(int newval)
+	{
+		eccentricity = newval;
+	}
+	public void set_experience(int newval)
+	{
+		experience = newval;
+	}
+	public void set_plasticity(int newval)
+	{
+		plasticity = newval;
+	}
+	public void set_sprightliness(int newval)
+	{
+		sprightliness = newval;
+	}
+}
+
+
+/* playerCharacter.java
+*  Author: Samuel Lamb
+*  KUID 2118080
+*  Last Change: 2014-12-8
+*/
+
+public class playerCharacter extends Creature
+{
+	// Shape is (roughly) the character's class
+	// It has three acceptable values: "Square", "Triangle", and "Circle" (note the caps)
+	private String charShape;
+	
+	// These variables correspond to the experience price for improving each stat
+	private int hpprice = 1;
+	private int congruenceprice = 1;
+	private int quadsprice = 1;
+	private int acutenessprice = 1;
+	private int eccentricityprice = 1;
+	private int plasticityprice = 1;
+	private int sprightlinessprice = 1;
+	
+	// Utility item quantities:
+	private int archimead = 0;
+	private int crystalmath = 0;
+	private int bifurcator = 0;
+	private int pythagoreanserum = 0;
+	
+	// Boolean array of wearable items (True = in inventory, not worn)
+	private boolean[] inventory = new boolean [10] ;
+	
+	private String wearing = "";
+	
+	// Getter method for charShape:
+	public String get_charShape()
+	{
+		return charShape;
+	}
+	
+	// Setter method for charShape:
+	public void set_charShape(String newshape)
+	{
+		charShape = newshape;
+	}
+	
+	// Getter methods for items:
+	public int get_archimead()
+	{
+		return archimead;
+	}
+	public int get_crystalmath()
+	{
+		return crystalmath;
+	}
+	public int get_bifurcator()
+	{
+		return bifurcator;
+	}
+	public int get_pythagoreanserum()
+	{
+		return pythagoreanserum;
+	}
+	public boolean get_inventory(int target)
+	{
+		return inventory[target];
+	}
+	
+	// Setters for items:
+	public void set_archimead(int newval)
+	{
+		archimead = newval;
+	}
+	public void set_crystalmath(int newval)
+	{
+		crystalmath = newval;
+	}
+	public void set_bifurcator(int newval)
+	{
+		bifurcator = newval;
+	}
+	public void set_pythagoreanserum(int newval)
+	{
+		pythagoreanserum = newval;
+	}
+	public void set_inventory(int target, boolean val)
+	{
+		inventory[target] = val;
+	}
+	
+	// Getter methods for prices:
+	public int get_hpprice()
+	{
+		return hpprice;
+	}
+	public int get_congruenceprice()
+	{
+		return congruenceprice;
+	}
+		public int get_quadsprice()
+	{
+	return quadsprice;
+	}
+		public int get_acutenessprice()
+	{
+	return acutenessprice;
+	}
+		public int get_eccentricityprice()
+	{
+		return eccentricityprice;
+	}
+	public int get_plasticityprice()
+	{
+		return plasticityprice;
+	}
+	public int get_sprightlinessprice()
+	{
+		return sprightlinessprice;
+	}
+	public String get_wearing()
+	{
+		return wearing;
+	}
+	
+	// Setter methods for prices:
+	public void set_hpprice(int newval)
+	{
+	hpprice = newval;
+	}
+	public void set_congruenceprice(int newval)
+	{
+	congruenceprice = newval;
+	}
+	public void set_quadsprice(int newval)
+	{
+	quadsprice = newval;
+	}
+	public void set_acutenessprice(int newval)
+	{
+	acutenessprice = newval;
+	}
+	public void set_eccentricityprice(int newval)
+	{
+	eccentricityprice = newval;
+	}
+	public void set_plasticityprice(int newval)
+	{
+	plasticityprice = newval;
+	}
+	public void set_sprightlinessprice(int newval)
+	{
+	sprightlinessprice = newval;
+	}
+	public void set_wearing(String newwear)
+	{
+		wearing = newwear;
+	}
+	
+	// Stat increase method
+	public boolean increasecongruence()
+	{
+		if (get_experience() >= congruenceprice)
+		{
+			// Deduct experience price
+			set_experience(get_experience() - congruenceprice);
+			// Increment price for next time
+			if((int)(congruenceprice*1.5) == congruenceprice)
+			{
+				congruenceprice = congruenceprice * 2;
+			}
+			else
+			{
+				congruenceprice = (int)(congruenceprice*1.5);
+			}
+			// Increment stat
+			// May wish to change expansion rate later
+			set_congruence(get_congruence() + 5);
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+	}
+	
+	public boolean increasehp()
+	{
+		if (get_experience() >= hpprice)
+		{
+			// Deduct experience price
+			set_experience(get_experience() -hpprice);
+			// Increment price for next time
+			if((int)(hpprice*1.5) == hpprice)
+			{
+				hpprice = hpprice * 2;
+			}
+			else
+			{
+				hpprice = (int)(hpprice*1.5);
+			}
+			// Increment stat
+			// May wish to change expansion rate later
+			set_maxhp(get_maxhp() + 5);
+			set_curhp(get_curhp() + 3);
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+	}
+	
+	public boolean increasequads()
+	{
+		if (get_experience() >= quadsprice)
+		{
+			// Deduct experience price
+			set_experience(get_experience() -quadsprice);
+			// Increment price for next time
+			if((int)(quadsprice*1.5) == quadsprice)
+			{
+				quadsprice = quadsprice * 2;
+			}
+			else
+			{
+				quadsprice = (int)(quadsprice*1.5);
+			}
+			// Increment stat
+			// May wish to change expansion rate later
+			set_quads(get_quads()+ 5);
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+	}
+	
+	public boolean increaseacuteness()
+	{
+		if (get_experience() >= acutenessprice)
+		{
+			// Deduct experience price
+			set_experience(get_experience() -acutenessprice);
+			// Increment price for next time
+			if((int)(acutenessprice*1.5) == acutenessprice)
+			{
+				acutenessprice = acutenessprice * 2;
+			}
+			else
+			{
+				acutenessprice = (int)(acutenessprice*1.5);
+			}
+			// Increment stat
+			// May wish to change expansion rate later
+			set_acuteness(get_acuteness() + 5);
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+	}
+	
+	public boolean increaseeccentricity()
+	{
+		if (get_experience() >= eccentricityprice)
+		{
+			// Deduct experience price
+			set_experience(get_experience() -eccentricityprice);
+			// Increment price for next time
+			if((int)(eccentricityprice*1.5) == eccentricityprice)
+			{
+				eccentricityprice = eccentricityprice * 2;
+			}
+			else
+			{
+				eccentricityprice = (int)(eccentricityprice*1.5);
+			}
+			// Increment stat
+			// May wish to change expansion rate later
+			set_eccentricity(get_eccentricity()+ 5);
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+	}
+	
+	public boolean increaseplasticity()
+	{
+		if (get_experience() >= plasticityprice)
+		{
+			// Deduct experience price
+			set_experience(get_experience() -plasticityprice);
+			// Increment price for next time
+			if((int)(plasticityprice*1.5) == plasticityprice)
+			{
+				plasticityprice = plasticityprice * 2;
+			}
+			else
+			{
+				plasticityprice = (int)(plasticityprice*1.5);
+			}
+			// Increment stat
+			// May wish to change expansion rate later
+			set_plasticity(get_plasticity() + 5);
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+	}
+	
+	public boolean increasesprightliness()
+	{
+		if (get_experience() >= sprightlinessprice)
+		{
+			// Deduct experience price
+			set_experience(get_experience() -sprightlinessprice);
+			// Increment price for next time
+			if((int)(sprightlinessprice*1.5) == sprightlinessprice)
+			{
+				sprightlinessprice=sprightlinessprice * 2;
+			}
+			else
+			{
+				sprightlinessprice = (int)(sprightlinessprice*1.5);
+			}
+			// Increment stat
+			// May wish to change expansion rate later
+			set_sprightliness(get_sprightliness() + 5);
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+	}
+
+	// Utility item usage methods:
+	
+	// Archimead heals 5 HP
+	public boolean usearchimead()
+	{
+		if(archimead >= 1)
+		{
+			// remove item
+			archimead -= 1;
+			// use item
+			if(get_curhp() + 5 < get_maxhp())
+			{
+				set_curhp(get_curhp() +5);
+			}
+			else
+			{
+				set_curhp(get_maxhp());
+			}
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	// HEY COMBAT PERSON! This causes damage!
+	// Bifurcators do 2 unblockable damage
+	public boolean usebifurcator(Creature target)
+	{
+		if(bifurcator >= 1)
+		{
+			// remove item
+			bifurcator -= 1;
+			// use item
+			target.set_curhp(target.get_curhp() - 2);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	/* HEY COMBAT PERSON!
+	* These next items should give a temporary bonus for
+	* the current combat only. Not sure how you want to 
+	* swing that. So, for now, they just return false. */
+	
+	// The Pythagorean Serum increases acuteness
+	public boolean usepythagoreanserum()
+	{
+	
+		return false;
+	}
+	
+	// Crystal Math increases your speed
+	// It may have side effects.
+	public boolean usecrystalmath()
+	{
+	
+		return false;
+	}
+	
+	// Wear wearable items:
+	public boolean wearitem(String towear)
+	{
+		// If you're already wearing something, you need to remove it, first.
+		// Why? Because I said so. That's why.
+		if (!wearing.equals(""))
+		{
+			return false;
+		}
+		else
+		{
+			// The values below are entirely negotiable
+			
+			
+			// This is a messy way to do this, but it works.
+			if (towear.equals("Spline") && inventory[0])
+			{
+				set_eccentricity(get_eccentricity()+4);
+				inventory[0] = false;
+			}
+			else if (towear.equals("Krig") && inventory[1])
+			{
+				if(get_eccentricity()<3)
+				{
+					return false;
+				}
+				else 
+				{
+					set_eccentricity(get_eccentricity()-3);
+					set_congruence(get_congruence()+4);
+					inventory[1] = false;
+				}
+			}
+			else if (towear.equals("Sierpin Snow-Skis") && inventory[2])
+			{
+				set_acuteness(get_acuteness()+4);
+				inventory[2] = false;
+			}
+			else if (towear.equals("Strange Attractor") && inventory[3])
+			{
+				set_congruence(get_congruence()+2);
+				inventory[3] = false;
+			}
+			else if (towear.equals("Axe of Choice") && inventory[4])
+			{
+				set_quads(get_quads()+4);
+				inventory[4] = false;
+			}
+			else if (towear.equals("Fuzzy Boundary") && inventory[5])
+			{
+				if (get_congruence() < 4)
+				{
+					return false;
+				}
+				else
+				{
+					set_congruence(get_congruence()-4);
+					set_plasticity(get_plasticity()+5);
+					inventory[5] = false;
+				}
+			}
+			else if (towear.equals("Lacy GÃ¶del") && inventory[6])
+			{
+				set_congruence(get_congruence()+5);
+				inventory[6] = false;
+			}
+			else if (towear.equals("Gauss Hand-Cannon") && inventory[7])
+			{
+				set_acuteness(get_acuteness()+4);
+				inventory[7] = false;
+			}
+			else if (towear.equals("Brass Knuthles") && inventory[8])
+			{
+				set_quads(get_quads()+3);
+				inventory[8] = false;
+			}
+			else if (towear.equals("Greeble") && inventory[9])
+			{
+				if(get_congruence()<5)
+				{
+					return false;
+				}
+				else
+				{
+					set_congruence(get_congruence()-5);
+					set_quads(get_quads()+4);
+					set_eccentricity(get_eccentricity()+5);
+					inventory[9] = false;
+				}
+			}
+			else
+			{
+				// You have to wear an item that's in the game
+				return false;
+			}
+			set_wearing(towear);
+			return true;
+		}
+	}
+	
+	// remove wearable items:
+	public boolean removeitem()
+	{
+		// If you're not wearing something, you can't remove it.
+		// Why? Because you'll break the universe. That's why.
+		if (wearing.equals(""))
+		{
+			return false;
+		}
+		else
+		{
+			// The values below NEED to match those in wearitem
+			
+			
+			if (wearing.equals("Spline"))
+			{
+				set_eccentricity(get_eccentricity()-4);
+			}
+			else if (wearing.equals("Krig"))
+			{
+					set_eccentricity(get_eccentricity()+3);
+					set_congruence(get_congruence()-4);
+			}
+			else if (wearing.equals("Sierpin Snow-Skis"))
+			{
+				set_acuteness(get_acuteness()-4);
+			}
+			else if (wearing.equals("Strange Attractor"))
+			{
+				set_congruence(get_congruence()-2);
+			}
+			else if (wearing.equals("Axe of Choice"))
+			{
+				set_quads(get_quads()-4);
+			}
+			else if (wearing.equals("Fuzzy Boundary"))
+			{
+					set_congruence(get_congruence()+4);
+					set_plasticity(get_plasticity()-5);
+
+			}
+			else if (wearing.equals("Lacy GÃ¶del"))
+			{
+				set_congruence(get_congruence()-5);
+			}
+			else if (wearing.equals("Gauss Hand-Cannon"))
+			{
+				set_acuteness(get_acuteness()-4);
+			}
+			else if (wearing.equals("Brass Knuthles"))
+			{
+				set_quads(get_quads()-3);
+			}
+			else if (wearing.equals("Greeble"))
+			{
+					set_congruence(get_congruence()+5);
+					set_quads(get_quads()-4);
+					set_eccentricity(get_eccentricity()-5);
+			}
+			else
+			{
+				// You have already broken the item system.
+				// You will not break it further.
+				
+				// Live with your shame.
+				return false;
+			}
+			set_wearing("");
+			return true;
+		}
+	}
+	
+	// Character creation method (?):
+	/* Don't know if we want to do this here,
+	*  or if that's a GUI sort of thing. */
+	
+	
+}
+playerCharacter PC;
+
 public void SetOkbutton(){
         Okbutton.setSize(290*x/1920,100*y/1080);
         Okbutton.setLocation(1570*x/1920, 80*y/1080);
@@ -1046,6 +1969,22 @@ public void SetOkbutton(){
        Circle.setSize(0,0);
       SetOkbutton();
        BackGround.setIcon(icon3);
+       
+          playerCharacter PC = new playerCharacter();
+PC.set_maxhp(10);
+PC.set_curhp(10);
+PC.set_congruence(1);
+PC.set_quads(1);
+PC.set_acuteness(1);
+PC.set_eccentricity(1);
+PC.set_experience(0);
+PC.set_plasticity(1);
+PC.set_sprightliness(1);
+PC.set_archimead(1);
+PC.set_crystalmath(1);
+PC.set_bifurcator(1);
+PC.set_pythagoreanserum(1);
+PC.set_charShape("Triangle");
     }//GEN-LAST:event_TriangleActionPerformed
 
     private void CircleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleActionPerformed
@@ -1057,8 +1996,29 @@ Path=3;
        Circle.setSize(0,0);
       SetOkbutton();
        BackGround.setIcon(icon3);
+   playerCharacter PC = new playerCharacter();
+PC.set_maxhp(10);
+PC.set_curhp(10);
+PC.set_congruence(1);
+PC.set_quads(1);
+PC.set_acuteness(1);
+PC.set_eccentricity(1);
+PC.set_experience(0);
+PC.set_plasticity(1);
+PC.set_sprightliness(1);
+PC.set_archimead(1);
+PC.set_crystalmath(1);
+PC.set_bifurcator(1);
+PC.set_pythagoreanserum(1);
+PC.set_charShape("Circle");
+
+       
+       
     }//GEN-LAST:event_CircleActionPerformed
 
+    
+
+    
     private void SquareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SquareActionPerformed
 Path=2;
       ImageIcon c = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene3(square).jpg");
@@ -1068,6 +2028,9 @@ Path=2;
        Circle.setSize(0,0);
       SetOkbutton();
        BackGround.setIcon(icon3);
+       
+
+PC.set_charShape("Square");
     }//GEN-LAST:event_SquareActionPerformed
 
     /**
@@ -1129,6 +2092,7 @@ Path=2;
     private javax.swing.JButton ExitButton;
     private javax.swing.JButton FleeButton;
     private javax.swing.JLabel FleeText;
+    private javax.swing.JProgressBar HealthMonster;
     private javax.swing.JButton ItemButton;
     private javax.swing.JLabel ItemText;
     private javax.swing.JLabel MonsterHealthText;
@@ -1141,7 +2105,6 @@ Path=2;
     private javax.swing.JLabel PithagoreanQty;
     private javax.swing.JLabel PithagoreanText;
     private javax.swing.JProgressBar PlayerHealth;
-    private javax.swing.JProgressBar PlayerHealthMonster;
     private javax.swing.JLabel PlayerHealthText;
     private javax.swing.JButton Square;
     private javax.swing.JButton Triangle;
