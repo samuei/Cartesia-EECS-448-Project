@@ -1031,6 +1031,13 @@ MonsterTurn();// TODO add your handling code here:
      );
  
  monster.p_attack();
+ HealthMonster.setValue(Adder.get_curhp());
+HealthMonster.setMaximum(Adder.get_maxhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+PC.get_curhp();
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
  
     }//GEN-LAST:event_AttackButtonActionPerformed
 

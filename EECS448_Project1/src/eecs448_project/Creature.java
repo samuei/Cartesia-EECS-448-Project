@@ -1,6 +1,7 @@
 /* Creature.java
 *  Author: Samuel Lamb
 *  KUID 2118080
+*  Last Change: 2014-12-8
 */
 
 public class Creature
