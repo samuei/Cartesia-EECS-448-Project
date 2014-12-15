@@ -56,189 +56,7 @@ public class NewJFrame extends javax.swing.JFrame {
            int sizeBattleItemQtyx=50;
     int sizeBattleItemQtyy=80;
 
-     public class combat{
 
-	public String p_shape;
-	public int p_curhp;
-	public int p_charisma;
-	public int p_strength;
-	public int p_dexterity;
-	private int p_magic;
-	private int p_defense;
-	private int p_speed;
-	private int p_experience;
-
-	public int p_atk_pwr;
-	private boolean def;
-
-	private int e_curhp;
-	private int e_charisma;
-	private int e_strength;
-	private int e_dexterity;
-	private int e_magic;
-	public int e_defense;
-	private int e_speed;
-	private int e_maxhp;
-
-	private playerCharacter pro;
-	private Creature bad;
-
-	private boolean combat = true;
-	private boolean enemy_dead = false;
-	private boolean player_dead = false;
-
-	public void initiateCombat(playerCharacter pro, Creature bad){
-
-		p_shape = pro.get_charShape();
-		p_curhp = pro.get_curhp();
-		p_charisma = pro.get_congruence();
-		p_strength = pro.get_quads();
-		p_dexterity = pro.get_acuteness();
-		p_magic = pro.get_eccentricity();
-		p_defense = pro.get_plasticity();
-		p_speed = pro.get_sprightliness();
-		p_experience = pro.get_experience();
-
-		e_curhp = bad.get_curhp();
-		e_maxhp = bad.get_maxhp();
-		e_charisma = bad.get_congruence();
-		e_strength = bad.get_quads();
-		e_dexterity = bad.get_acuteness();
-		e_magic = bad.get_eccentricity();
-		e_defense = bad.get_plasticity();
-		e_speed = bad.get_sprightliness();
-
-		this.pro = pro;
-		this.bad = bad;
-
-		if(p_shape.equals("Circle")){
-			p_atk_pwr = p_magic;
-		}
-		else if(p_shape.equals("Triangle")){
-			p_atk_pwr = p_dexterity;
-		}
-		else if(p_shape.equals("Square")){
-			p_atk_pwr = p_strength;
-		}
-	}
-
-	public int p_attack(){
-		int dmg = p_atk_pwr - e_defense;
-		if(dmg <= 0){
-			e_curhp -= 1;
-		}
-		else{
-			e_curhp -= dmg;
-		}	
-		bad.set_curhp(e_curhp);
-                return e_curhp;
-	}
-
-	public void p_defend(){
-		def = true;
-	}
-
-	public boolean p_useItem(String item){
-		if(item.equals( "pythagoreanserum")){
-			if(pro.get_pythagoreanserum() >= 1){
-				p_dexterity += 2;
-				pro.set_pythagoreanserum(pro.get_pythagoreanserum()-1);
-				return true;
-			}
-			else{
-				return false;
-			}
-		}
-		else if(item.equals("bifurcator")){
-			pro.usebifurcator(bad);
-                        return true;
-		}
-		else if(item.equals("crystalmath")){
-			if(pro.get_crystalmath() >= 1){
-				//side effects?
-				p_speed += 5;
-				pro.set_crystalmath(pro.get_crystalmath()-1);
-				return true;
-			}
-			else{
-				return false;
-			}
-		}
-                
-		else if(item.equals("archimead")){
-			pro.usearchimead();
-			p_curhp = pro.get_curhp();
-                        return true;
-		}
-		else{
-			return false;
-		}
-        }
-
-	public void p_flee(){
-		if(p_speed >= e_speed){
-			//player successfully flees
-			//no exp gain
-			combat = false;
-		}
-		else{
-			//player fails to flee
-		}
-	}
-
-	public void e_turn(){
-		int damage;
-
-		if(e_curhp > (0.1*e_maxhp)){
-			if(def){
-				damage = (int)(0.5*e_strength) - p_defense;
-				def = false;
-			}
-			else
-				damage = e_strength - p_defense;
-
-			if(damage < 0)
-				damage = 0;
-
-			p_curhp -= damage;
-
-			pro.set_curhp(p_curhp);
-
-			//checks to see if player is dead
-			if(p_curhp<=0){
-				combat = false;
-				player_dead = true;
-			}
-		}
-		else if(e_curhp > 0){
-			if(e_speed >= p_speed)
-				//some kind of boolean
-				//some kind of "Enemy fled" in the text box
-				combat = false;
-			else{
-				//enemy is stuck in battle..
-			}
-		}
-		else{
-			enemy_dead = true;
-			//i have no idea how much to add to experience for this...
-			pro.set_experience(p_experience + 5);
-		}
-	}
-
-	public boolean check_playerdead(){
-		return player_dead;
-	}
-
-	public boolean check_enemydead(){
-		return enemy_dead;
-	}
-
-	public boolean check_combat(){
-		return combat;
-	}
-
-}
      public void StoryMode(){
           Toolkit tk=Toolkit.getDefaultToolkit();
           x = (int) tk.getScreenSize().getWidth();
@@ -267,7 +85,7 @@ public class NewJFrame extends javax.swing.JFrame {
         
          BattleLabelDown.setSize(880*x/1920,y*270/1080);
          BattleLabelDown.setLocation(0, y*(810)/1080);
-           ImageIcon b = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\LabelDown.png");
+           ImageIcon b = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\LabelDown.png");
             ImageIcon icon2=new ImageIcon(ScaledImage(b,BattleLabelDown.getWidth(),BattleLabelDown.getHeight()));
             BattleLabelDown.setIcon(icon2);
             
@@ -281,13 +99,13 @@ public class NewJFrame extends javax.swing.JFrame {
             
     BattleLabelOptions.setSize(1040*x/1920,y*270/1080);
     BattleLabelOptions.setLocation(880*x/1920, 810*y/1080);
-     ImageIcon c = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\OptionLabel.png");
+     ImageIcon c = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\OptionLabel.png");
             ImageIcon icon3=new ImageIcon(ScaledImage(c,BattleLabelOptions.getWidth(),BattleLabelOptions.getHeight()));
             BattleLabelOptions.setIcon(icon3);
     
      BattleLabelInventory.setSize(480*x/1920,y*810/1080);
      BattleLabelInventory.setLocation(1440*x/1920, 0);
-         ImageIcon d = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\Inventory Buttons.png");
+         ImageIcon d = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Inventory Buttons.png");
             ImageIcon icon4=new ImageIcon(ScaledImage(d,BattleLabelInventory.getWidth(),BattleLabelInventory.getHeight()));
             BattleLabelInventory.setIcon(icon4);
    
@@ -297,7 +115,7 @@ public class NewJFrame extends javax.swing.JFrame {
      
      //Option Buttons
 
-      ImageIcon e = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\BattleButton.png");
+      ImageIcon e = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\BattleButton.png");
             ImageIcon icon5=new ImageIcon(ScaledImage(e, (int) (sizeBattleButtonx), (int) (sizeBattleButtony)));
       
  AttackButton.setSize(sizeBattleButtonx,sizeBattleButtony);
@@ -553,7 +371,7 @@ PhaseChangeText.setSize(0, 0);
        }
     public void ItemsOn(){
             
-     ImageIcon f = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\BattleItemButton.png");
+     ImageIcon f = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\BattleItemButton.png");
             ImageIcon icon6=new ImageIcon(ScaledImage(f, (int) (sizeBattleInventoryButtonx), (int) (sizeBattleInventoryButtony)));
       
     
@@ -1080,7 +898,7 @@ Adder.set_sprightliness(1);
         
      }
 
-    combat monster;
+
      int CountOkbutton=0;
     private void OkbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkbuttonActionPerformed
 CountOkbutton++;
@@ -1148,8 +966,8 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
         
          ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene5(Adder,triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
-        BackGround.setIcon(icon); // NOI18N
-       monster.initiateCombat(PC,Adder);
+        BackGround.setIcon(icon); 
+
      
             }
                if(Path==2){
@@ -1259,7 +1077,7 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
          ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Hippopotanus(triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
-       monster.initiateCombat(PC,Adder);
+
      
             }
                if(Path==2){
@@ -1381,7 +1199,7 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
          ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Octopi(triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
-       monster.initiateCombat(PC,Adder);
+
      
             }
                if(Path==2){
@@ -1494,7 +1312,7 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
          ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Geometree(triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
-       monster.initiateCombat(PC,Adder);
+
      
             }
                if(Path==2){
@@ -1601,7 +1419,7 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
          ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Cardinal(triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
-       monster.initiateCombat(PC,Adder);
+
      
             }
                if(Path==2){
@@ -1919,7 +1737,7 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
          ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Octopi(triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
-       monster.initiateCombat(PC,Adder);
+
      
             }
                if(Path==2){
@@ -1997,7 +1815,7 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
          ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Geometree(triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
-       monster.initiateCombat(PC,Adder);
+
      
             }
                if(Path==2){
@@ -2039,7 +1857,7 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
                                                 
                     }
                                                                                  if(Monsters==4){
-                    CountOkbutton=11;
+                    CountOkbutton=12;
                     
                                                             BattleModeOff();
                                         StoryMode();
@@ -3101,7 +2919,7 @@ public void SetOkbutton(){
         OkText.setLocation(1630*x/1920, 100*y/1080);
         Font Continue=new Font("Arial",Font.PLAIN,(int) 36*x/1920);
         OkText.setFont(Continue);
-        ImageIcon b = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Desktop\\Final Project\\okbutton.png");
+        ImageIcon b = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\okbutton.png");
    
         ImageIcon icon1=new ImageIcon(ScaledImage(b,Okbutton.getWidth(),Okbutton.getHeight()));
        Okbutton.setIcon(icon1);
