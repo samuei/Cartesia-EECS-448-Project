@@ -239,6 +239,14 @@ public class NewJFrame extends javax.swing.JFrame {
 	}
 
 }
+     public void StoryMode(){
+          Toolkit tk=Toolkit.getDefaultToolkit();
+          x = (int) tk.getScreenSize().getWidth();
+         y = (int) tk.getScreenSize().getHeight();
+       SetOkbutton();
+       BackGround.setSize(x, y);
+     }
+     
     
     public void BattleMode(){
                 this.setAlwaysOnTop(false);
@@ -251,7 +259,7 @@ public class NewJFrame extends javax.swing.JFrame {
      this.setSize(x, y);
      
 
-  
+  Okbutton.setSize(0,0);
      
      //Labels
        BackGround.setSize(x*1440/1920,y*810/1080);
@@ -398,6 +406,122 @@ PhaseChangeText.setSize(0, 0);
          
 }
     
+    public void BattleModeOff(){
+       
+     
+
+  
+     
+  
+   
+        
+         BattleLabelDown.setSize(0,0);
+       
+          
+            
+            
+              
+            BattleLabelDownText.setSize(0,0);
+         
+   
+            
+    BattleLabelOptions.setSize(0,0);
+    
+    
+     BattleLabelInventory.setSize(0,0);
+   
+   
+    
+
+       
+     
+     //Option Buttons
+
+ AttackButton.setSize(0,0);
+ 
+  DefendButton.setSize(0,0);
+  
+   ItemButton.setSize(0,0);
+ 
+    FleeButton.setSize(0,0);
+   
+  
+    //Inventory Buttons
+  
+    
+  
+    BifurcatorButton.setSize(0,0);
+    BifurcatorButton.setLocation(1463*x/1920, 377*y/1080);
+    CrystalMathButton.setSize(0,0);
+    CrystalMathButton.setLocation(1463*x/1920,512*y/1080);
+    ArchimeadButton.setSize(0,0);
+    ArchimeadButton.setLocation(1463*x/1920,648*y/1080);
+    PithagoreanButton.setSize(0,0);
+    PithagoreanButton.setLocation(1463*x/1920, 240*y/1080);
+
+               
+    //Text Buttons Inventory
+   
+
+    
+      
+    
+        BifurcatorText.setSize(0,0);
+      
+    CrystalMathText.setSize(0,0);
+    
+    ArchimedeText.setSize(0,0);
+   
+    PithagoreanText.setSize(0,0);
+   
+    
+     //Text Buttons Option
+    
+  
+   
+    
+        AttackButtonText.setSize(0,0);
+ 
+    DefendText.setSize(0,0);
+   
+    ItemText.setSize(0,0);
+   
+    FleeText.setSize(0,0);
+   
+    
+    //Qty Text
+
+   
+     BifurcatorQty.setSize(0,0);
+    
+    CrystalMathQty.setSize(0,0);
+    
+    ArchimeadQty.setSize(0,0);
+    
+    PithagoreanQty.setSize(0,0);
+   
+    
+         //HealthBar
+     PlayerHealth.setSize(0,0);
+    
+    
+    //Player Health Text
+    PlayerHealthText.setSize(0,0);
+    
+    //Monster Helth
+         HealthMonster.setSize(0,0);
+    
+     
+       //Monster Health Text
+   MonsterHealthText.setSize(0,0);
+   
+PhaseChange.setSize(0,0);
+PhaseChangeText.setSize(0, 0);
+
+        
+        
+    }
+    
     
    
 
@@ -451,7 +575,25 @@ PhaseChangeText.setSize(0, 0);
 
    
     PithagoreanButton.setSize(sizeBattleInventoryButtonx,sizeBattleInventoryButtony);
+    CrystalMathQty.setText(""+PC.get_crystalmath());
+    PithagoreanQty.setText(""+PC.get_pythagoreanserum());
+    BifurcatorQty.setText(""+PC.get_bifurcator());
+    ArchimeadQty.setText(""+PC.get_archimead());
     
+    if(PC.get_bifurcator()<1){
+        BifurcatorButton.setEnabled(false);
+    }
+      if(PC.get_archimead()<1){
+        ArchimeadButton.setEnabled(false);
+    }
+    
+        if(PC.get_crystalmath()<1){
+        CrystalMathButton.setEnabled(false);
+    }
+    
+          if(PC.get_pythagoreanserum()<1){
+        PithagoreanButton.setEnabled(false);
+    }
     
         
     }
@@ -472,7 +614,7 @@ PhaseChangeText.setSize(0, 0);
         
     }
     
-   
+   playerCharacter PC;
           Creature Adder;
     public NewJFrame() {
         initComponents();
@@ -526,11 +668,11 @@ sizeBattleOptionButtonTexty=sizeBattleOptionButtonTexty*y/1080;
 Adder.set_maxhp(5);
 Adder.set_curhp(5);
 Adder.set_congruence(1);
-Adder.set_quads(1);
-Adder.set_acuteness(1);
+Adder.set_quads(2);
+Adder.set_acuteness(2);
 Adder.set_eccentricity(1);
 Adder.set_experience(0);
-Adder.set_plasticity(1);
+Adder.set_plasticity(0);
 Adder.set_sprightliness(1);
 
 
@@ -962,12 +1104,14 @@ CountOkbutton++;
         }
         
         if(CountOkbutton==2){
+           
             if(Path==1){
                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene4(triangle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
             }
                if(Path==2){
+                   
                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene4(square).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
@@ -980,6 +1124,7 @@ CountOkbutton++;
              
         }
           if(CountOkbutton==3){
+              
                   if(Path==1){
                   
         BattleMode();
@@ -1004,18 +1149,75 @@ PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
             }
                if(Path==2){
                     BattleMode();
+                    HealthMonster.setValue(Adder.get_curhp());
+HealthMonster.setMaximum(Adder.get_maxhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                    
                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene5(Adder,square).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
             }
                   if(Path==3){
                        BattleMode();
+                       HealthMonster.setValue(Adder.get_curhp());
+HealthMonster.setMaximum(Adder.get_maxhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
+
+
+PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());
+                       
                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene5(Adder,circle).jpg");
         ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
         BackGround.setIcon(icon); // NOI18N
             }
  
         }
+          if(CountOkbutton==4){
+              if(PC.get_charShape()=="Triangle"){
+                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Strange-Attractor(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);
+        PC.set_congruence(PC.get_congruence()+2);
+              }
+               if(PC.get_charShape()=="Square"){
+                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Strange-Attractor(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);
+                PC.set_congruence(PC.get_congruence()+2);
+              }
+                  if(PC.get_charShape()=="Circle"){
+                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Strange-Attractor(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);
+                PC.set_congruence(PC.get_congruence()+2);
+              }
+          }
+          if(CountOkbutton==5){
+              
+            if(PC.get_charShape()=="Triangle"){
+                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene6(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);
+              }
+               if(PC.get_charShape()=="Square"){
+                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene6(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);
+              }
+                  if(PC.get_charShape()=="Circle"){
+                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene6(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);
+              }
+        
+          }
        
    
     }//GEN-LAST:event_OkbuttonActionPerformed
@@ -1052,6 +1254,10 @@ ItemsOn();        // TODO add your handling code here:
 
     private void FleeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FleeButtonActionPerformed
 Case=3;
+   MonsterTurn();
+   BattleLabelDownText.setText("<html><body>You will try to flee from the monster!<br></body></html>"
+     
+     );
         // TODO add your handling code here:
     }//GEN-LAST:event_FleeButtonActionPerformed
 
@@ -1088,21 +1294,41 @@ Case=5;
     }//GEN-LAST:event_PithagoreanButtonActionPerformed
  int Count=0;
  int Case;
+int Monsters=0;
+playerCharacter Init;
     private void PhaseChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhaseChangeActionPerformed
-   
+  
+ if(Count==0){
+       Init=PC;
+ }
+     
     Count++;
     //Attack
     if(Case==1){
+           int Atk_pw2 = 0;
          if(Count==1){
+            
+              if(PC.get_charShape()=="Square"){
+                 Atk_pw2=PC.get_quads(); 
+             }
+            if(PC.get_charShape()=="Circle"){
+                 Atk_pw2=PC.get_eccentricity(); 
+             }
+               if(PC.get_charShape()=="Triangle"){
+                 Atk_pw2=PC.get_acuteness(); 
+                
+             }
+               
+             
      BattleLabelDownText.setText("<html><body>The monster received damage!<br></body></html>"
      );
-     int temp = PC.get_acuteness();
+     int temp = Atk_pw2 - Adder.get_plasticity();
+            ;
      temp = Adder.get_curhp()-temp;
          Adder.set_curhp(temp);
  HealthMonster.setValue(temp);
 HealthMonster.setMaximum(Adder.get_maxhp());
-MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
-     
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());     
     
     }
     if(Count==2){
@@ -1113,8 +1339,17 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
     if(Count==3){
                  BattleLabelDownText.setText("<html><body>Monster attacked you!<br></body></html>"
      );
+       
+                 
     }
     if(Count==4){
+        
+                           int temp = Adder.get_quads()-PC.get_plasticity();
+               temp = PC.get_curhp()-temp;
+         PC.set_curhp(temp);
+ PlayerHealth.setValue(temp);
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());  
          BattleLabelDownText.setText("<html><body>You received damage!<br></body></html>"
      );
         
@@ -1123,12 +1358,16 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
              PlayerTurn();
                Count=0;
          }
+     
+     
     }
     //Defend
         if(Case==2){
          if(Count==1){
-     BattleLabelDownText.setText("<html><body>You defended from the monster!<br></body></html>"
+     BattleLabelDownText.setText("<html><body>You prepare  to defend from the monster!<br></body></html>"
      );
+     
+     
     }
     if(Count==2){
              BattleLabelDownText.setText("<html><body>Now it is monster turn!<br></body></html>"
@@ -1142,7 +1381,12 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
     if(Count==4){
          BattleLabelDownText.setText("<html><body>You received damage!<br></body></html>"
      );
-        
+                                   int temp = (int) (Adder.get_quads()*0.5 -PC.get_plasticity());
+               temp = PC.get_curhp()-temp;
+         PC.set_curhp(temp);
+ PlayerHealth.setValue(temp);
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());  
     }
      if(Count==5){
              PlayerTurn();
@@ -1151,34 +1395,76 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
     }
         //Flee
             if(Case==3){
-         if(Count==1){
-     BattleLabelDownText.setText("<html><body>The monster received damage!<br></body></html>"
+ 
+    if(Count==1){
+             BattleLabelDownText.setText("<html><body>The monster try to follow you!<br></body></html>"
      );
-    }
-    if(Count==2){
-             BattleLabelDownText.setText("<html><body>Now it is monster turn!<br></body></html>"
-     );
+      
 
     }
+    if(Count==2){
+        if(PC.get_sprightliness()<Adder.get_sprightliness()){
+         
+             BattleLabelDownText.setText("<html><body>Monster attacked you!<br></body></html>");
+        } else{
+             BattleLabelDownText.setText("<html><body>You fled from the monster!<br></body></html>");
+        }
+             
+    }
     if(Count==3){
-                 BattleLabelDownText.setText("<html><body>Monster attacked you!<br></body></html>"
-     );
-    }
-    if(Count==4){
-         BattleLabelDownText.setText("<html><body>You received damage!<br></body></html>"
-     );
+            if(PC.get_sprightliness()<Adder.get_sprightliness()){
+         
+      int temp = Adder.get_quads()-PC.get_plasticity();
+               temp = PC.get_curhp()-temp;
+         PC.set_curhp(temp);
+ PlayerHealth.setValue(temp);
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());  
+         BattleLabelDownText.setText("<html><body>You received damage!<br></body></html>");
+        } else{Monsters++;
+                if(Monsters==1){
+                    CountOkbutton=5;
+          BattleModeOff();
+                                        StoryMode();
+                   if(PC.get_charShape()=="Triangle"){
+                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene6(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);
+              }
+               if(PC.get_charShape()=="Square"){
+                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene6(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);
+              }
+                  if(PC.get_charShape()=="Circle"){
+                    ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Scene6(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);
+              }
+                }
+        }
         
-    }
-     if(Count==5){
-             PlayerTurn();
+        
+  
+   
+        
+            
+
+         
+ PlayerTurn();
                Count=0;
-         }
     }
+   
+    }
+            
             //Pythagorean
                 if(Case==4){
          if(Count==1){
+                 PC.set_pythagoreanserum(PC.get_pythagoreanserum()-1);
+     PithagoreanQty.setText(""+PC.get_pythagoreanserum());
      BattleLabelDownText.setText("<html><body>Your acuteness is incresed!<br></body></html>"
      );
+     PC.set_acuteness(PC.get_acuteness()+2);
     }
     if(Count==2){
              BattleLabelDownText.setText("<html><body>Now it is monster turn!<br></body></html>"
@@ -1190,6 +1476,12 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
      );
     }
     if(Count==4){
+                           int temp = Adder.get_quads()-PC.get_plasticity();
+               temp = PC.get_curhp()-temp;
+         PC.set_curhp(temp);
+ PlayerHealth.setValue(temp);
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());  
          BattleLabelDownText.setText("<html><body>You received damage!<br></body></html>"
      );
         
@@ -1202,6 +1494,15 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
                //Bifurcator 
                     if(Case==5){
          if(Count==1){
+               PC.set_bifurcator(PC.get_bifurcator()-1);
+     BifurcatorQty.setText(""+PC.get_bifurcator());
+                 int temp = 2;
+            ;
+     temp = Adder.get_curhp()-temp;
+         Adder.set_curhp(temp);
+ HealthMonster.setValue(temp);
+HealthMonster.setMaximum(Adder.get_maxhp());
+MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());   
      BattleLabelDownText.setText("<html><body>The monster received damage!<br></body></html>"
      );
      
@@ -1218,7 +1519,12 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
     if(Count==4){
          BattleLabelDownText.setText("<html><body>You received damage!<br></body></html>"
      );
-        
+                              int temp = Adder.get_quads()-PC.get_plasticity();
+               temp = PC.get_curhp()-temp;
+         PC.set_curhp(temp);
+ PlayerHealth.setValue(temp);
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());  
     }
      if(Count==5){
              PlayerTurn();
@@ -1228,8 +1534,12 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
                //Crystal Math     
                         if(Case==6){
          if(Count==1){
+               PC.set_crystalmath(PC.get_crystalmath()-1);
+     CrystalMathQty.setText(""+PC.get_crystalmath());
+             PC.set_sprightliness(PC.get_sprightliness()+5);
      BattleLabelDownText.setText("<html><body>Your speed is incresed!<br></body></html>"
      );
+     
     }
     if(Count==2){
              BattleLabelDownText.setText("<html><body>Now it is monster turn!<br></body></html>"
@@ -1241,6 +1551,12 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
      );
     }
     if(Count==4){
+                           int temp = Adder.get_quads()-PC.get_plasticity();
+               temp = PC.get_curhp()-temp;
+         PC.set_curhp(temp);
+ PlayerHealth.setValue(temp);
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());  
          BattleLabelDownText.setText("<html><body>You received damage!<br></body></html>"
      );
         
@@ -1255,6 +1571,23 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
          if(Count==1){
      BattleLabelDownText.setText("<html><body>Your HP is recovered!<br></body></html>"
      );
+     PC.set_archimead(PC.get_archimead()-1);
+     ArchimeadQty.setText(""+PC.get_archimead());
+       int temp = 5;
+       if(PC.get_maxhp()>PC.get_curhp()+5){
+             temp = PC.get_curhp()+temp;
+         PC.set_curhp(temp);
+ PlayerHealth.setValue(temp);
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp()); 
+       } else {
+            
+         PC.set_curhp(PC.get_maxhp());
+ PlayerHealth.setValue(PC.get_curhp());
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp()); 
+       }
+               
     }
     if(Count==2){
              BattleLabelDownText.setText("<html><body>Now it is monster turn!<br></body></html>"
@@ -1268,13 +1601,88 @@ MonsterHealthText.setText(Adder.get_curhp()+"/"+Adder.get_maxhp());
     if(Count==4){
          BattleLabelDownText.setText("<html><body>You received damage!<br></body></html>"
      );
-        
+                              int temp = Adder.get_quads()-PC.get_plasticity();
+               temp = PC.get_curhp()-temp;
+         PC.set_curhp(temp);
+ PlayerHealth.setValue(temp);
+PlayerHealth.setMaximum(PC.get_maxhp());
+PlayerHealthText.setText(PC.get_curhp()+"/"+PC.get_maxhp());  
     }
      if(Count==5){
              PlayerTurn();
                 Count=0;
          }
     }
+                            if(Case==8){
+                                if(Count==1){MonsterTurn();
+                                         BattleLabelDownText.setText("<html><body>You defeated the monster!<br></body></html>");
+                                }
+                                    if(Count==2){
+                                         BattleLabelDownText.setText("<html><body>Your experience incresead!<br></body></html>");
+                               PC.set_experience(PC.get_experience()+6);
+                                    }
+                                    if(Count==3){
+                                        Monsters++;
+                                        if(Monsters==1){
+                                             BattleModeOff();
+                                        StoryMode();
+                                        if(PC.get_charShape()=="Triangle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Sierpin-snow-skis(triangle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+        PC.set_acuteness(PC.get_acuteness()+4);
+        
+                                        }
+                                             if(PC.get_charShape()=="Circle"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Spline(circle).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+        PC.set_eccentricity(PC.get_eccentricity()+4);
+        
+                                        }
+                                                  if(PC.get_charShape()=="Square"){
+                                           ImageIcon a = new javax.swing.ImageIcon("C:\\Users\\Danilo\\Documents\\NetBeansProjects\\EECS448_Project1\\Images\\Brass-knuthles(square).jpg");
+        ImageIcon icon=new ImageIcon(ScaledImage(a,BackGround.getWidth(),BackGround.getHeight()));
+        BackGround.setIcon(icon);   
+        PC.set_quads(PC.get_quads()+4);
+                                        }
+                                      
+                                        
+                                            
+                                        }
+                                        
+                                     
+                                        PlayerTurn();
+                                        Count=0;
+                                        
+                                    }
+                                
+                            }
+                            
+                             if(Case==9){
+                                if(Count==1){MonsterTurn();
+                                         BattleLabelDownText.setText("<html><body>You are dead!<br></body></html>");
+                                }
+                                    if(Count==2){
+                                    
+                                        
+                                        
+                                        Count=0;
+                                    }
+                                  
+                                
+                            }
+                            
+                            if(Adder.get_curhp()<1 && Case!=8){
+                                Case=8;
+                                Count=0;
+                                PC=Init;
+                            }
+                            if(PC.get_curhp()<1 && Case!=9){
+                                Case=9;
+                                Count=0;
+                                
+                            }
 
     }//GEN-LAST:event_PhaseChangeActionPerformed
 
@@ -1957,7 +2365,7 @@ public class playerCharacter extends Creature
 	
 	
 }
-playerCharacter PC;
+
 
 public void SetOkbutton(){
         Okbutton.setSize(290*x/1920,100*y/1080);
@@ -1981,21 +2389,10 @@ public void SetOkbutton(){
       SetOkbutton();
        BackGround.setIcon(icon3);
        
-          playerCharacter PC = new playerCharacter();
-PC.set_maxhp(10);
-PC.set_curhp(10);
-PC.set_congruence(1);
-PC.set_quads(1);
-PC.set_acuteness(1);
-PC.set_eccentricity(1);
-PC.set_experience(0);
-PC.set_plasticity(1);
-PC.set_sprightliness(1);
-PC.set_archimead(1);
-PC.set_crystalmath(1);
-PC.set_bifurcator(1);
-PC.set_pythagoreanserum(1);
+          
+
 PC.set_charShape("Triangle");
+
     }//GEN-LAST:event_TriangleActionPerformed
 
     private void CircleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleActionPerformed
@@ -2007,20 +2404,7 @@ Path=3;
        Circle.setSize(0,0);
       SetOkbutton();
        BackGround.setIcon(icon3);
-   playerCharacter PC = new playerCharacter();
-PC.set_maxhp(10);
-PC.set_curhp(10);
-PC.set_congruence(1);
-PC.set_quads(1);
-PC.set_acuteness(1);
-PC.set_eccentricity(1);
-PC.set_experience(0);
-PC.set_plasticity(1);
-PC.set_sprightliness(1);
-PC.set_archimead(1);
-PC.set_crystalmath(1);
-PC.set_bifurcator(1);
-PC.set_pythagoreanserum(1);
+
 PC.set_charShape("Circle");
 
        
